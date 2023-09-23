@@ -1,23 +1,18 @@
-<script setup>
+<script>
 import { RouterLink, RouterView } from 'vue-router'
+
+export default {
+  name: 'App',
+  components: {
+    RouterLink,
+    RouterView,
+  }
+}
 
 </script>
 
 <template>
-  <header>
-
-
-    <div class="wrapper">
-
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <RouterView/>
 </template>
 
 <style scoped>

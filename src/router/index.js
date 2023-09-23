@@ -1,22 +1,42 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import stepperContent from "@/Management/crops/components/stepper-content.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
+
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: "/",
+      props: true,
+      component: stepperContent,
+      children: [
+        {
+          path: "/",
+          name: "stepper-content",
+          props: true,
+          component: () =>
+              import("@/Management/crops/components/stepper-content.vue")
+        },
+        {
+          path: "/card-step1-content",
+          props: true,
+          component: () =>
+                import("@/Management/crops/components/card-step1-content.vue")
+        },
+        {
+          path: "/card-step2-content",
+          props: true,
+          component: () =>
+              import("@/Management/crops/components/card-step2-content.vue")
+        },
+        {
+          path: "/card-step3-content",
+          props: true,
+          component: () =>
+              import("@/Management/crops/components/card-step3-content.vue")
+        },
+      ],
     },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
   ]
 })
 
