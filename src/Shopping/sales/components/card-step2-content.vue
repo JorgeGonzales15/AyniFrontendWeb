@@ -7,12 +7,20 @@
       <form @submit.prevent="handleSubmit(!v$.$invalid)">
         <div class="p-fluid">
           <div class="field m-2">
-            <label for="username" class="font-bold">Seleccione en que frecuencia de dias vas a hacer el regado</label>
-            <pv-inputnumber id="watered" v-model="watered"></pv-inputnumber>
+            <label for="username" class="font-bold">Nombre del propietario</label>
+            <pv-inputtext id="username" v-model="username"></pv-inputtext>
           </div>
           <div class="field m-2 md:w-full">
-            <label for="pestcleaning" class="font-bold">Seleccione en que frecuencia de dias vas a hacer el desparasitado</label>
-            <pv-inputnumber id="pestcleaning" v-model="pestcleaning"></pv-inputnumber>
+            <label for="cardnumber" class="font-bold">Numero de tarjeta</label>
+            <pv-inputnumber id="cardnumber" v-model="cardnumber"></pv-inputnumber>
+          </div>
+          <div class="field m-2">
+            <label for="expiration" class="font-bold">Fecha de expiracion</label>
+            <pv-calendar id="expiration" view="month" date-format="mm/yy" v-model="expiration"></pv-calendar>
+          </div>
+          <div class="field m-2">
+            <label for="cvv" class="font-bold">CVV</label>
+            <pv-inputtext id="cvv" v-model="cvv"></pv-inputtext>
           </div>
           <div class="flex justify-content-between w-full my-2">
             <pv-button class="p-button-success text-white w-full m-2" label="Atras" icon="pi pi-angle-left" iconPos="left" @click="prevPage"></pv-button>
@@ -28,21 +36,29 @@
 import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
 export default {
-  name: "card-step1-content",
+  name: "step-2",
   setup: () => ({ v$: useVuelidate() }),
   data() {
     return {
       submitted: false,
-      watered: "",
-      pestcleaning: "",
+      username: "",
+      cardnumber: 0,
+      expiration: "",
+      cvv: "",
     };
   },
   validations() {
     return {
-      watered: {
+      username: {
         required,
       },
-      pestcleaning: {
+      cardnumber: {
+        required,
+      },
+      expiration: {
+        required,
+      },
+      cvv: {
         required,
       },
     };
@@ -51,8 +67,10 @@ export default {
     nextPage() {
       this.$emit("next-page", {
         formData: {
-          watered: this.watered,
-          pestcleaning: this.pestcleaning,
+          username: this.username,
+          cardnumber: this.cardnumber,
+          expiration: this.expiration,
+          cvv: this.cvv,
         },
         pageIndex: 1,
       });

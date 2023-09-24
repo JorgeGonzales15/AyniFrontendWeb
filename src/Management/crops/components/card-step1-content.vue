@@ -1,29 +1,37 @@
 <template>
   <pv-card class="border-none shadow-none bg-transparent">
     <template v-slot:title>
-      <div class="text-center">Realiza tu pedido</div>
+      <div class="text-center">Seleccione los procesos que requiera</div>
     </template>
     <template v-slot:content>
       <form @submit.prevent="handleSubmit(!v$.$invalid)">
         <div class="p-fluid">
           <div class="field m-2">
-            <label for="product" class="font-bold">Producto</label>
-            <pv-inputtext id="product" v-model="product"></pv-inputtext>
+            <label for="product" class="font-bold">Deshacerse de la maleza</label>
+            <pv-checkbox v-model="undergrowth" binary="true" />
           </div>
           <div class="field m-2 md:w-full">
-             <label for="quantity" class="font-bold">Cantidad</label>
-             <pv-inputnumber id="quantity" v-model="quantity" :class="{}" mode="decimal" :min="1" :max="100"></pv-inputnumber>
+            <label for="quantity" class="font-bold">Abonar el terreno</label>
+            <pv-checkbox v-model="fertilize" binary="true" />
           </div>
           <div class="field m-2">
-            <label for="date" class="font-bold">Fecha</label>
-            <pv-calendar id="date" v-model="date"></pv-calendar>
+            <label for="date" class="font-bold">Oxigenar el terreno</label>
+            <pv-checkbox v-model="oxygenate" binary="true" />
           </div>
           <div class="field m-2">
-            <label for="method" class="font-bold">Metodo de pago</label>
-            <pv-inputtext id="method" v-model="method"></pv-inputtext>
+            <label for="method" class="font-bold">Realizar las líneas de cultivo</label>
+            <pv-checkbox v-model="lines" binary="true" />
           </div>
           <div class="field m-2">
-                <pv-button class="p-button-info text-white bg-button w-full" label="Siguiente" type="submit"/>
+            <label for="method" class="font-bold">Hacer los agujeros</label>
+            <pv-checkbox v-model="holes" binary="true" />
+          </div>
+          <div class="field m-2">
+            <pv-button
+                class="p-button-info text-white bg-button w-full"
+                label="Siguiente"
+                type="submit"
+            />
           </div>
         </div>
       </form>
@@ -32,44 +40,40 @@
 </template>
 
 <script>
-import { required } from "@vuelidate/validators";
 import { useVuelidate } from "@vuelidate/core";
+
 export default {
   name: "card-step1-content",
   setup: () => ({ v$: useVuelidate() }),
   data() {
     return {
       submitted: false,
-      product: "",
-      quantity: 0,
-      date: "",
-      method: "",
+      undergrowth: false,
+      fertilize: false,
+      oxygenate: false,
+      lines: false,
+      holes: false,
     };
   },
   validations() {
     return {
-      product: {
-        required,
-      },
-      quantity: {
-        required,
-      },
-      date: {
-        required,
-      },
-      method: {
-        required,
-      },
+      submitted: {},
+      undergrowth: {},
+      fertilize: {},
+      oxygenate: {},
+      lines: {},
+      holes: {},
     };
   },
   methods: {
     nextPage() {
       this.$emit("next-page", {
         formData: {
-          product: this.product,
-          quantity: this.quantity,
-          date: this.date,
-          method: this.method,
+          undergrowth: this.undergrowth ? this.undergrowth: false,
+          fertilize: this.fertilize ? this.fertilize: false,
+          oxygenate: this.oxygenate ? this.oxygenate: false,
+          lines: this.lines ? this.lines: false,
+          holes: this.holes ? this.holes: false,
         },
         pageIndex: 0,
       });
@@ -77,16 +81,12 @@ export default {
     handleSubmit(isFormValid) {
       this.submitted = true;
       if (isFormValid) {
-        let weightDimensional = (this.height + this.width + this.length) / 5000;
-        let weight =
-            weightDimensional > this.weight ? weightDimensional : this.weight;
-        this.nextPage(weight);
+        this.nextPage();
       }
     },
-  }
+  },
 };
 </script>
 
 <style scoped>
-
 </style>

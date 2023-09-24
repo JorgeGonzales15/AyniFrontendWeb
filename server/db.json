@@ -23,6 +23,25 @@
     }
   ],
   "crops": [
-
+    {
+      "undergrowth": true,
+      "fertilize": true,
+      "oxygenate": false,
+      "lines": true,
+      "holes": true,
+      "watered": 12,
+      "pestcleaning": 30,
+      "id": 1
+    },
+    {
+      "undergrowth": true,
+      "fertilize": false,
+      "oxygenate": false,
+      "lines": true,
+      "holes": true,
+      "watered": 10,
+      "pestcleaning": 15,
+      "id": 2
+    }
   ]
 }

@@ -6,32 +6,36 @@
       </template>
       <template v-slot:content>
         <div class="field col-12">
-          <label for="undergrowth">Maleza</label>
-          <b>{{ formData.undergrowth ? 'Si' : 'No' }}</b>
+          <label for="product">Producto</label>
+          <b>{{ formData.product ? formData.product : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="fertilize">Abonar</label>
-          <b>{{ formData.fertilize ? 'Si' : 'No' }}</b>
+          <label for="quantity">Cantidad</label>
+          <b>{{ formData.quantity ? formData.quantity : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="oxygenate">Oxigenar</label>
-          <b>{{ formData.oxygenate ? 'Si' : 'No' }}</b>
+          <label for="date">Fecha de compra</label>
+          <b>{{ formData.date ? formData.date : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="lines">Lineas</label>
-          <b>{{ formData.lines ? 'Si' : 'No' }}</b>
+          <label for="method">Metodo de pago</label>
+          <b>{{ formData.method ? formData.method : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="holes">Agujeros</label>
-          <b>{{ formData.holes ? 'Si' : 'No' }}</b>
+          <label for="username">Propietario</label>
+          <b>{{ formData.username ? formData.username : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="watered">Intervalo de regado</label>
-          <b>{{ formData.watered ? formData.watered : '-' }}</b>
+          <label for="cardnumber">Numero de tarjeta</label>
+          <b>{{ formData.cardnumber ? formData.cardnumber : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="pestcleaning">Intervalo de desinfestacion</label>
-          <b>{{ formData.pestcleaning ? formData.pestcleaning : '-' }}</b>
+          <label for="expiration">Fecha de expiracion</label>
+          <b>{{ formData.expiration ? formData.expiration : '-' }}</b>
+        </div>
+        <div class="field col-12">
+          <label for="cvv">CVV</label>
+          <b>{{ formData.cvv && formData.cvv.length === 3 ? '**' + formData.cvv[2] : '-' }}</b>
         </div>
       </template>
       <template v-slot:footer>
@@ -45,9 +49,10 @@
 </template>
 
 <script>
-import {CropsApiService} from "@/Management/crops/services/crops-api.service";
+import { SalesApiService } from "@/Shopping/sales/services/sales-api.service";
 
 export default {
+  name:"step-3",
   props: {
     formData: Object,
   },
@@ -57,15 +62,12 @@ export default {
     },
 
     complete() {
-      const salesApiService = new CropsApiService();
+      const salesApiService = new SalesApiService();
       const data = {
-        undergrowth: this.formData.undergrowth,
-        fertilize: this.formData.fertilize,
-        oxygenate: this.formData.oxygenate,
-        lines: this.formData.lines,
-        holes: this.formData.holes,
-        watered: this.formData.watered,
-        pestcleaning: this.formData.pestcleaning,
+        product: this.formData.product,
+        quantity: this.formData.quantity,
+        date: this.formData.date,
+        method: this.formData.method,
       };
 
       salesApiService

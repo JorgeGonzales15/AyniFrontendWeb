@@ -17,6 +17,7 @@ import InputText from "primevue/inputtext";
 import InputNumber from "primevue/inputnumber";
 import Dropdown from "primevue/dropdown";
 import Calendar from "primevue/calendar";
+import Checkbox from "primevue/checkbox";
 
 const app = createApp(App)
 
@@ -32,5 +33,5 @@ app
     .component("pv-inputnumber", InputNumber)
     .component("pv-dropdown", Dropdown)
     .component("pv-calendar", Calendar)
-
+    .component("pv-checkbox", Checkbox)
 app.mount('#app')

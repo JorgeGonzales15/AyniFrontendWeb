@@ -1,6 +1,6 @@
-import http from "../../shared/services/http-common";
+import http from "../../../shared/services/http-common";
 
-export class CropsApiService{
+export class CropsApiService {
     getAll() { return http.get('/crops'); }
     getById(id) { return http.get(`/crops/${id}`); }
     create(data) { return http.post('/crops', data); }
