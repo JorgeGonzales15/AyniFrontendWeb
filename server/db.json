@@ -1,0 +1,28 @@
+{
+  "sales": [
+    {
+      "id": 1,
+      "product": "Papa",
+      "quantity": 2,
+      "date": "2018-09-09",
+      "method": "credit"
+    },
+    {
+      "product": "Arveja",
+      "quantity": 2,
+      "date": "2023-09-05T05:00:00.000Z",
+      "method": "Credito",
+      "id": 2
+    },
+    {
+      "product": "Camote",
+      "quantity": 2,
+      "date": "2023-09-07T05:00:00.000Z",
+      "method": "Credito",
+      "id": 3
+    }
+  ],
+  "crops": [
+
+  ]
+}
