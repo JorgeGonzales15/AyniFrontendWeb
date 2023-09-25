@@ -2,11 +2,17 @@
 
 ## Overview
 
+Crops and sales
+
+## Recommended IDE Setup
 This web application, built using Angular Material, offers a comprehensive solution for efficient crop management and facilitates seamless buying and selling of crops. It empowers users to streamline their agricultural operations, from cultivation to commerce.
 
 ## Key Features
 
+## Customize configuration
+
 - **Crop Inventory Management**: Keep track of your crops, including details like type, quantity, and growth stage.
+
 
 - **Transaction History**: Monitor all buying and selling activities, providing a clear overview of your business operations.
 
