@@ -29,6 +29,13 @@ import Dropdown from "primevue/dropdown";
 import Tag from "primevue/tag";
 import Card from "primevue/card";
 import Listbox from 'primevue/listbox';
+import Avatar from "primevue/avatar";
+import InputText from "primevue/inputtext";
+import SplitButton from "primevue/splitbutton";
+import TabMenu from "primevue/tabmenu";
+import Fieldset from "primevue/fieldset";
+import Divider from "primevue/divider";
+import Carousel from "primevue/carousel";
 
 const app = createApp(App)
 
@@ -40,7 +47,7 @@ app
     .component("pv-card", Card)
     .component("pv-dialog", Dialog)
     .component("pv-button", Button)
-    .component("pv-inputtext", InputText)
+    .component('pv-input-text', InputText)
     .component("pv-inputnumber", InputNumber)
     .component("pv-dropdown", Dropdown)
     .component("pv-calendar", Calendar)
@@ -56,4 +63,10 @@ app
     .component('pv-toast', Toast)
     .component('pv-tag', Tag)
     .component('pv-listbox', Listbox)
-app.mount('#app')
+    .component('pv-tab-menu', TabMenu)
+    .component('pv-split-button', SplitButton)
+    .component('pv-avatar', Avatar)
+    .component('pv-field-set', Fieldset)
+    .component('pv-divider', Divider)
+    .component('pv-carousel', Carousel)
+    .mount('#app')
