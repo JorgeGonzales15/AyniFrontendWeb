@@ -1,29 +1,47 @@
-# AyniFrontendWeb
+# Ayni
 
-This template should help get you started developing with Vue 3 in Vite.
+## Overview
 
-## Recommended IDE Setup
+This web application, built using Angular Material, offers a comprehensive solution for efficient crop management and facilitates seamless buying and selling of crops. It empowers users to streamline their agricultural operations, from cultivation to commerce.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Key Features
 
-## Customize configuration
+- **Crop Inventory Management**: Keep track of your crops, including details like type, quantity, and growth stage.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+- **Transaction History**: Monitor all buying and selling activities, providing a clear overview of your business operations.
 
-## Project Setup
+- **User-friendly Interface**: The intuitive UI, designed with Angular Material, ensures a smooth and hassle-free experience for users of all levels.
 
-```sh
-npm install
-```
+- **Search and Filter Functionality**: Easily locate specific crops or transactions with powerful search and filter options.
 
-### Compile and Hot-Reload for Development
+- **Secure Authentication**: Implement secure login and authentication mechanisms to safeguard user data and account information.
 
-```sh
-npm run dev
-```
+- **Responsive Design**: The application is optimized for various devices, offering a seamless experience on desktops, tablets, and mobile phones.
 
-### Compile and Minify for Production
+## Getting Started
 
-```sh
-npm run build
-```
+### Installation
+
+To run the application locally, follow these steps:
+
+1. Clone the repository.
+2. Install dependencies using `npm install`.
+3. Start the development server with `ng serve`.
+
+### Usage
+
+1. Navigate to the app in your preferred web browser.
+2. Log in using your credentials or create a new account.
+3. Begin managing your crops and exploring the trading features.
+
+## Contributing
+
+We welcome contributions from the community. If you'd like to contribute to the development of this project, please follow our [contribution guidelines](CONTRIBUTING.md).
+
+## License
+
+This project is licensed under the [MIT License](LICENSE.md).
+
+## Support
+
+For any questions or issues, please reach out to [contact@email.com].
