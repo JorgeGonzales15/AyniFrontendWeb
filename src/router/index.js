@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import Cards from "@/Finance/components/cost-main-content/Cards.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
