@@ -1,4 +1,3 @@
-import { createRouter, createWebHistory } from 'vue-router'
 import salesstepperContent from "@/Shopping/sales/components/stepper-content.vue";
 import salescardstep1Content from "@/Shopping/sales/components/card-step1-content.vue";
 import salescardstep2Content from "@/Shopping/sales/components/card-step2-content.vue";
@@ -7,6 +6,8 @@ import cropsstepperContent from "@/Management/crops/components/stepper-content.v
 import cropscardstep1Content from "@/Management/crops/components/card-step1-content.vue";
 import cropscardstep2Content from "@/Management/crops/components/card-step2-content.vue";
 import cropscardstep3Content from "@/Management/crops/components/card-step3-content.vue";
+import HomeView from '../views/HomeView.vue'
+import Cards from "@/Finance/components/cost-main-content/Cards.vue";
 
 const router = createRouter({
   history: createWebHistory(),

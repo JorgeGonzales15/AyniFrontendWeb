@@ -10,14 +10,25 @@ import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
 
 import Steps from "primevue/steps";
-import Card from "primevue/card";
-import Dialog from "primevue/dialog";
 import Button from "primevue/button";
-import InputText from "primevue/inputtext";
 import InputNumber from "primevue/inputnumber";
-import Dropdown from "primevue/dropdown";
 import Calendar from "primevue/calendar";
 import Checkbox from "primevue/checkbox";
+import DataTable from "primevue/datatable";
+import Column from "primevue/column";
+import Toolbar from "primevue/toolbar";
+import InputText from "primevue/inputtext";
+import Textarea from "primevue/textarea";
+import Button from "primevue/button";
+import Row from "primevue/row";
+import Sidebar from "primevue/sidebar";
+import Menu from "primevue/menu";
+import Dialog from "primevue/dialog";
+import Toast from "primevue/toast";
+import Dropdown from "primevue/dropdown";
+import Tag from "primevue/tag";
+import Card from "primevue/card";
+import Listbox from 'primevue/listbox';
 
 const app = createApp(App)
 
@@ -34,4 +45,15 @@ app
     .component("pv-dropdown", Dropdown)
     .component("pv-calendar", Calendar)
     .component("pv-checkbox", Checkbox)
+    .component('pv-data-table', DataTable)
+    .component("pv-column", Column)
+    .component('pv-toolbar', Toolbar)
+    .component('pv-textarea', Textarea)
+    .component('pv-button', Button)
+    .component('pv-row', Row)
+    .component('pv-sidebar', Sidebar)
+    .component('pv-menu', Menu)
+    .component('pv-toast', Toast)
+    .component('pv-tag', Tag)
+    .component('pv-listbox', Listbox)
 app.mount('#app')
