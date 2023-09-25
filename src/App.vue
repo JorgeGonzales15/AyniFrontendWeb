@@ -4,27 +4,17 @@ import ListBox from "@/Finance/components/listbox-content/ListBox.vue";
 import CardsCosts from "@/Finance/components/cost-main-content/Cards.vue";
 
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    CardsCosts,
-    ListBox,
-
-
-  },
-};
+    RouterLink,
+    RouterView,
+  }
+}
 
 </script>
 
 <template>
-
-  <div class="background">
-    <div class="lista1 contenedor">
-      <list-box></list-box>
-    </div>
-  </div>
-  <!-- <cards-costs></cards-costs>-->
-
-
+  <RouterView/>
 </template>
 
 <style scoped>

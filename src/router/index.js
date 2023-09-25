@@ -1,23 +1,79 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import salesstepperContent from "@/Shopping/sales/components/stepper-content.vue";
+import salescardstep1Content from "@/Shopping/sales/components/card-step1-content.vue";
+import salescardstep2Content from "@/Shopping/sales/components/card-step2-content.vue";
+import salescardstep3Content from "@/Shopping/sales/components/card-step3-content.vue";
+import cropsstepperContent from "@/Management/crops/components/stepper-content.vue";
+import cropscardstep1Content from "@/Management/crops/components/card-step1-content.vue";
+import cropscardstep2Content from "@/Management/crops/components/card-step2-content.vue";
+import cropscardstep3Content from "@/Management/crops/components/card-step3-content.vue";
 import HomeView from '../views/HomeView.vue'
 import Cards from "@/Finance/components/cost-main-content/Cards.vue";
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: HomeView
+      path: "/sales/",
+      props: true,
+      component: salesstepperContent,
+      children: [
+        {
+          path: "/sales/",
+          name: "stepper-content",
+          props: true,
+          component: salesstepperContent,
+        },
+        {
+          path: "/sales/step-1",
+          name:"sales-step1",
+          props: true,
+          component: salescardstep1Content,
+        },
+        {
+          path: "/sales/step-2",
+          name:"sales-step2",
+          props: true,
+          component: salescardstep2Content,
+        },
+        {
+          path: "/sales/step-3",
+          name:"sales-step3",
+          props: true,
+          component: salescardstep3Content,
+        },
+      ],
     },
     {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
+      path: "/crops/",
+      props: true,
+      component: cropsstepperContent,
+      children: [
+        {
+          path: "/crops/",
+          name: "stepper-content",
+          props: true,
+          component: cropsstepperContent,
+        },
+        {
+          path: "/crops/step-1",
+          name:"crops-step1",
+          props: true,
+          component: cropscardstep1Content,
+        },
+        {
+          path: "/crops/step-2",
+          name:"crops-step2",
+          props: true,
+          component: cropscardstep2Content,
+        },
+        {
+          path: "/crops/step-3",
+          name:"crops-step3",
+          props: true,
+          component: cropscardstep3Content,
+        },
+      ],
+    },
   ]
 })
 

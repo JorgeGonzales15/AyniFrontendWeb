@@ -4,12 +4,16 @@ import router from './router'
 import ToastService from "primevue/toastservice";
 import PrimeVue from "primevue/config";
 
-// PrimeVue Material Design Theme
-import "primevue/resources/themes/md-light-indigo/theme.css";
+import "primevue/resources/themes/saga-blue/theme.css";
 import "primevue/resources/primevue.min.css";
 import "primeicons/primeicons.css";
 import "primeflex/primeflex.css";
-// PrimeVue Components
+
+import Steps from "primevue/steps";
+import Button from "primevue/button";
+import InputNumber from "primevue/inputnumber";
+import Calendar from "primevue/calendar";
+import Checkbox from "primevue/checkbox";
 import DataTable from "primevue/datatable";
 import Column from "primevue/column";
 import Toolbar from "primevue/toolbar";
@@ -25,23 +29,31 @@ import Dropdown from "primevue/dropdown";
 import Tag from "primevue/tag";
 import Card from "primevue/card";
 import Listbox from 'primevue/listbox';
-createApp(App)
+
+const app = createApp(App)
+
+app
     .use(router)
-    .use(PrimeVue, { ripple: true })
     .use(ToastService)
+    .use(PrimeVue, { ripple: true })
+    .component("pv-steps", Steps)
+    .component("pv-card", Card)
+    .component("pv-dialog", Dialog)
+    .component("pv-button", Button)
+    .component("pv-inputtext", InputText)
+    .component("pv-inputnumber", InputNumber)
+    .component("pv-dropdown", Dropdown)
+    .component("pv-calendar", Calendar)
+    .component("pv-checkbox", Checkbox)
     .component('pv-data-table', DataTable)
     .component("pv-column", Column)
     .component('pv-toolbar', Toolbar)
-    .component('pv-input-text', InputText)
     .component('pv-textarea', Textarea)
     .component('pv-button', Button)
     .component('pv-row', Row)
     .component('pv-sidebar', Sidebar)
     .component('pv-menu', Menu)
-    .component('pv-dialog', Dialog)
     .component('pv-toast', Toast)
-    .component('pv-dropdown', Dropdown)
     .component('pv-tag', Tag)
-    .component('pv-card', Card)
     .component('pv-listbox', Listbox)
-    .mount('#app')
+app.mount('#app')
