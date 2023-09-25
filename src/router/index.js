@@ -12,7 +12,6 @@ import cropsstepperContent from "@/Management/crops/components/stepper-content.v
 import cropscardstep1Content from "@/Management/crops/components/card-step1-content.vue";
 import cropscardstep2Content from "@/Management/crops/components/card-step2-content.vue";
 import cropscardstep3Content from "@/Management/crops/components/card-step3-content.vue";
-import HomeView from '../views/HomeView.vue'
 import Cards from "@/Finance/components/cost-main-content/Cards.vue";
 
 const router = createRouter({
@@ -24,6 +23,7 @@ const router = createRouter({
     { path: "/select-rol",name: "select-rol", component: SelectRolComponent},
     { path: "/farmer-home", name: "farmer-home", component: FarmerHomeComponent },
     { path: "/merchant-home", name: "merchant-home", component: MerchantHomeComponent },
+    { path: "/costs", name: "costs", component: Cards },
     { path: "/sales/", props: true, component: salesstepperContent,
       children: [
         { path: "/sales/", name: "stepper-content", props: true, component: salesstepperContent,},

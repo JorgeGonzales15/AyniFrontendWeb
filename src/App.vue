@@ -1,7 +1,5 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
-import ListBox from "@/Finance/components/listbox-content/ListBox.vue";
-import CardsCosts from "@/Finance/components/cost-main-content/Cards.vue";
 import NavigationComponent from "@/shared/components/navigation.component.vue";
 
 export default {

@@ -39,16 +39,16 @@ export default {
         {label: 'Logout', icon: 'pi pi-fw pi-power-off', to: "/signin"}
       ],
       routesFarmer: [
-        { label: "Home", to: "/sign-in" },
-        { label: "My Products", to: "/farmer-home"},
-        { label: "Financial Management", to: "/farmer-home"},
+        { label: "Home", to: "/farmer-home" },
+        { label: "My Plants", to: "/crops"},
+        { label: "Financial Management", to: "/costs"},
         { label: "My Orders", to: "/farmer-home"}
       ],
       routesMerchant: [
-        { label: "Home", to: "/home" },
-        { label: "Find Products", to: "/farmer-home"},
-        { label: "My Shopping", to: "/farmer-home"},
-        { label: "Rate", to: "/farmer-home"}
+        { label: "Home", to: "/merchant-home" },
+        { label: "Find Products", to: "/sales/step-1"},
+        { label: "My Shopping", to: "/merchant-home"},
+        { label: "Rate", to: "/merchant-home"}
       ]
     };
   }

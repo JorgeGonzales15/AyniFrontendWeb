@@ -42,8 +42,6 @@ import {
 import {
   OrderPaymentApiService
 } from "@/Authentication/components/home/merchant-home/services/order-payment-api.service";
-import {OrderDetail} from "@/Authentication/components/home/merchant-home/model/order-detail/order-detail.entity";
-import {OrderPayment} from "@/Authentication/components/home/merchant-home/model/order-payment/order-payment.entity";
 
 export default {
   name: "merchant-home",

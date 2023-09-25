@@ -8,7 +8,7 @@
         <div class="p-fluid">
           <div class="field m-2">
             <label for="product" class="font-bold">Producto</label>
-            <pv-inputtext id="product" v-model="product"></pv-inputtext>
+            <pv-input-text id="product" v-model="product"></pv-input-text>
           </div>
           <div class="field m-2 md:w-full">
              <label for="quantity" class="font-bold">Cantidad</label>
@@ -20,7 +20,7 @@
           </div>
           <div class="field m-2">
             <label for="method" class="font-bold">Metodo de pago</label>
-            <pv-inputtext id="method" v-model="method"></pv-inputtext>
+            <pv-input-text id="method" v-model="method"></pv-input-text>
           </div>
           <div class="field m-2">
                 <pv-button class="p-button-info text-white bg-button w-full" label="Siguiente" type="submit"/>

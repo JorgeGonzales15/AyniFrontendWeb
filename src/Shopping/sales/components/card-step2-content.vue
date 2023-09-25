@@ -8,7 +8,7 @@
         <div class="p-fluid">
           <div class="field m-2">
             <label for="username" class="font-bold">Nombre del propietario</label>
-            <pv-inputtext id="username" v-model="username"></pv-inputtext>
+            <pv-input-text id="username" v-model="username"></pv-input-text>
           </div>
           <div class="field m-2 md:w-full">
             <label for="cardnumber" class="font-bold">Numero de tarjeta</label>
@@ -20,7 +20,7 @@
           </div>
           <div class="field m-2">
             <label for="cvv" class="font-bold">CVV</label>
-            <pv-inputtext id="cvv" v-model="cvv"></pv-inputtext>
+            <pv-input-text id="cvv" v-model="cvv"></pv-input-text>
           </div>
           <div class="flex justify-content-between w-full my-2">
             <pv-button class="p-button-success text-white w-full m-2" label="Atras" icon="pi pi-angle-left" iconPos="left" @click="prevPage"></pv-button>
