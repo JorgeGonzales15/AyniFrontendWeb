@@ -1,53 +1,38 @@
 # Ayni
 
-## Overview
+Ayni is a web application built with Vue.js designed to facilitate the management and trading of crops. Its key features include:
 
-Crops and sales
+## For Farmers:
 
-## Recommended IDE Setup
-This web application, built using Angular Material, offers a comprehensive solution for efficient crop management and facilitates seamless buying and selling of crops. It empowers users to streamline their agricultural operations, from cultivation to commerce.
+- Crop planning through calendars and steps
+- Adding and recording crop details
+- Cost and profit management
+- Listing products for sale
+- Sales management
 
-## Key Features
+## For Traders:
 
-## Customize configuration
+- Exploring high-quality products
+- Making purchases and placing orders
+- Tracking purchase status
+- Rating agricultural products
 
-- **Crop Inventory Management**: Keep track of your crops, including details like type, quantity, and growth stage.
+## Advantages:
 
+- Enhanced production and cultivation management
+- Improved time and dedication management
+- Streamlined profit tracking
+- Automation of steps through user-defined inputs
+- Direct contact with producers and traders
+- Transparent data on purchases and sales
+- User-friendly and intuitive design
+- Secure ordering process
+- Formalized cultivation procedures
 
-- **Transaction History**: Monitor all buying and selling activities, providing a clear overview of your business operations.
+---
 
-- **User-friendly Interface**: The intuitive UI, designed with Angular Material, ensures a smooth and hassle-free experience for users of all levels.
+## How to Get Started
 
-- **Search and Filter Functionality**: Easily locate specific crops or transactions with powerful search and filter options.
-
-- **Secure Authentication**: Implement secure login and authentication mechanisms to safeguard user data and account information.
-
-- **Responsive Design**: The application is optimized for various devices, offering a seamless experience on desktops, tablets, and mobile phones.
-
-## Getting Started
-
-### Installation
-
-To run the application locally, follow these steps:
-
-1. Clone the repository.
-2. Install dependencies using `npm install`.
-3. Start the development server with `ng serve`.
-
-### Usage
-
-1. Navigate to the app in your preferred web browser.
-2. Log in using your credentials or create a new account.
-3. Begin managing your crops and exploring the trading features.
-
-## Contributing
-
-We welcome contributions from the community. If you'd like to contribute to the development of this project, please follow our [contribution guidelines](CONTRIBUTING.md).
-
-## License
-
-This project is licensed under the [MIT License](LICENSE.md).
-
-## Support
-
-For any questions or issues, please reach out to [contact@email.com].
+1. Clone this repository.
+2. Install the required dependencies using `npm install`.
+3. Run the application using `npm run serve`.
