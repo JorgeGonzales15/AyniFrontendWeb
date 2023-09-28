@@ -1,8 +1,3 @@
-<script>
-export default {
-  name: "select-rol",
-}
-</script>
 
 <template>
   <div class="center">
@@ -32,11 +27,10 @@ export default {
           Track inputs used on your crops
         </li>
       </ul>
-      <router-link to="/farmer-home">
-        <pv-button type="submit"
-                   label="Start as a Farmer"
-                   class="w-15rem mt-5"/>
-      </router-link>
+      <pv-button type="submit"
+                 @click="onFarmerSelected"
+                 label="Start as a Farmer"
+                 class="w-15rem mt-5"/>
     </pv-field-set>
 
     <pv-field-set legend="Merchant" class="field-set">
@@ -62,15 +56,30 @@ export default {
           Track the status of your orders 24/7
         </li>
       </ul>
-      <router-link to="/merchant-home">
-        <pv-button type="submit"
-                   label="Start as a Merchant"
-                   class="w-15rem mt-5"/>
-      </router-link>
+      <pv-button type="submit"
+                 @click="onMerchantSelected"
+                 label="Start as a Merchant"
+                 class="w-15rem mt-5"/>
     </pv-field-set>
 
   </div>
 </template>
+
+<script>
+export default {
+  name: "select-rol",
+  methods: {
+    onMerchantSelected() {
+      this.$store.dispatch('authentication/updateRol', 'merchant');
+      this.$router.push("/merchant-home");
+    },
+    onFarmerSelected() {
+      this.$store.dispatch('authentication/updateRol', 'farmer');
+      this.$router.push("/farmer-home");
+    }
+  }
+}
+</script>
 
 <style>
 .center{

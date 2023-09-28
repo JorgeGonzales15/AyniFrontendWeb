@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "http://localhost:3000/api/v1",
+    baseURL: "https://github.com/upc-2023-GreatMinds-SW51-Web/AyniFrontendWeb.git",
     headers: {'Content-Type': 'application/json'},
 });

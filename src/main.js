@@ -34,6 +34,7 @@ import TabMenu from "primevue/tabmenu";
 import Fieldset from "primevue/fieldset";
 import Divider from "primevue/divider";
 import Carousel from "primevue/carousel";
+import store from "@/store/store";
 
 const app = createApp(App)
 
@@ -41,6 +42,7 @@ app
     .use(router)
     .use(ToastService)
     .use(PrimeVue, { ripple: true })
+    .use(store)
     .component("pv-steps", Steps)
     .component("pv-card", Card)
     .component("pv-dialog", Dialog)

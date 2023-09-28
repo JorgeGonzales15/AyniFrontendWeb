@@ -6,24 +6,37 @@
         <p>Welcome, <span>user.email</span></p>
       </pv-split-button>
     </template>
-    <template #center>
-      <router-link v-for="route in routesMerchant"
-                   :to="route.to"
-                   custom
-                   v-slot="{ navigate, href }"
-                   :key="route.label">
-        <pv-button class="mr-2 b-font font-bold"
-                   :href="href"
-                   @click="navigate"
-                   :label="route.label"
-                   text></pv-button>
-      </router-link>
-    </template>
+
     <template #end>
-      <span class="p-input-icon-left">
-        <i class="pi pi-search"/>
-        <pv-input-text placeholder="Search" type="text" size="small"></pv-input-text>
-      </span>
+      <div class="nav-button-container">
+        <router-link v-for="route in routesMerchant"
+                     :to="route.to"
+                     v-if="rolWatcher === 'merchant'"
+                     custom
+                     v-slot="{ navigate, href }"
+                     :key="route.label">
+          <pv-button class="mr-2 b-font font-bold"
+                     :href="href"
+                     @click="navigate"
+                     :label="route.label"
+                     text></pv-button>
+        </router-link>
+      </div>
+      <div class="nav-button-container">
+        <router-link v-for="route in routesFarmer"
+                     :to="route.to"
+                     v-if="rolWatcher === 'farmer'"
+                     custom
+                     v-slot="{ navigate, href }"
+                     :key="route.label">
+          <pv-button class="mr-2 b-font font-bold"
+                     :href="href"
+                     @click="navigate"
+                     :label="route.label"
+                     text></pv-button>
+        </router-link>
+      </div>
+
     </template>
   </pv-toolbar>
 </template>
@@ -33,10 +46,10 @@ export default {
   name: "navigation",
   data() {
     return {
-
+      rol: null,
       items: [
         { label: 'farmer', icon: 'pi pi-user' },
-        {label: 'Logout', icon: 'pi pi-fw pi-power-off', to: "/signin"}
+        { label: 'Logout', icon: 'pi pi-fw pi-power-off', to: "/signin"}
       ],
       routesFarmer: [
         { label: "Home", to: "/farmer-home" },
@@ -51,7 +64,12 @@ export default {
         { label: "Rate", to: "/merchant-home"}
       ]
     };
-  }
+  },
+  computed: {
+    rolWatcher() {
+      return this.$store.getters['authentication/getUserRol'];
+    }
+  },
 }
 </script>
 
@@ -63,5 +81,10 @@ export default {
   border: none;
   border-radius: 0;
 }
-
+@media (max-width: 768px) {
+  .nav-button-container{
+    display: flex;
+    flex-direction: column;
+  }
+}
 </style>
