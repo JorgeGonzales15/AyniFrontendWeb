@@ -116,22 +116,52 @@
   ],
   "products": [
     {
-      "name": "Papas",
+      "name": "Brócoli",
+      "description": "Brócoli fresco y saludable",
+      "unit_price": 1.99,
+      "image_url": "https://www.thespruceeats.com/thmb/spjoOLmjTV4CbjY_YY2Ajw0pCWg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SES-broccoli-storage-and-selection-1807744-bf2d2de7326b40a9b00a165877ec314c.jpg"
+    },
+    {
+      "name": "Zanahoria",
+      "description": "Zanahoria crujiente y nutritiva",
+      "unit_price": 0.99,
+      "image_url": "https://wongfood.vtexassets.com/arquivos/ids/159244-800-auto?v=636089432532430000&width=800&height=auto&aspect=true"
+    },
+    {
+      "name": "Papa",
       "description": "Papas haradas durante bastante tiempo",
       "unit_price": 1.5,
-      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+      "image_url": "https://tumercadoperu.com/wp-content/uploads/2020/11/3.png"
     },
     {
-      "name": "Cerezos",
-      "description": "Cereza recontra roja",
-      "unit_price": 2.5,
-      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+      "name": "Col",
+      "description": "Col fresca y sabrosa",
+      "unit_price": 1.25,
+      "image_url": "https://miquelsupermercat.com/wp-content/uploads/2020/04/Col-Blanca-Mercafruve.jpg"
     },
     {
-      "name": "Arroz",
-      "description": "Arroz bien plantado",
-      "unit_price": 1.5,
-      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+      "name": "Lechuga",
+      "description": "Lechuga verde y crujiente",
+      "unit_price": 0.75,
+      "image_url": "https://biotrendies.com/wp-content/uploads/2015/07/lechuga.jpg"
+    },
+    {
+      "name": "Tomate",
+      "description": "Tomate maduro y jugoso",
+      "unit_price": 0.99,
+      "image_url": "https://www.quironsalud.com/idcsalud-client/cm/images?locale=es_ES&idMmedia=2299323"
+    },
+    {
+      "name": "Manzana",
+      "description": "Manzanas frescas y dulces",
+      "unit_price": 1.25,
+      "image_url": "https://img.huffingtonpost.es/files/image_720_480/uploads/2022/12/10/639475b0d79b2.jpeg"
+    },
+    {
+      "name": "Naranja",
+      "description": "Naranjas jugosas y llenas de vitamina C",
+      "unit_price": 0.89,
+      "image_url": "https://tumercadoperu.com/wp-content/uploads/2020/08/naranja-huando-nacional.png"
     }
   ],
   "activities": [
