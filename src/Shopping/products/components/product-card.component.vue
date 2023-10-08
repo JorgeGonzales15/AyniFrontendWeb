@@ -25,6 +25,7 @@ export default {
   padding: 20px;
   overflow: hidden;
   max-width: 250px;
+  text-align: center;
 
   @media (max-width: 767px) {
     align-self: center;
@@ -48,6 +49,7 @@ export default {
   margin: 0 auto;
   padding: 5px 0;
   width: 100%;
+  color: white;
   background-color: #3EAF2C;
 }
 </style>
