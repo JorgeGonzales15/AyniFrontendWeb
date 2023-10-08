@@ -5,11 +5,17 @@
 
     <div class="product-grid">
       <product-card
-          v-for="product in products"
+          v-for="product in displayedProducts"
           :key="product.id"
           :product="product"
       />
     </div>
+
+    <pv-paginator
+        @page="onPageChange"
+        :rows="pageSize"
+        :totalRecords="totalRecords"
+    ></pv-paginator>
   </div>
 </template>
 
@@ -25,17 +31,32 @@ export default {
   data() {
     return {
       products: [],
+      currentPage: 1,
+      pageSize: 6,
+      totalRecords: 0,
     };
   },
-   async mounted() {
-     try {
-       const productsService = new ProductsApiService();
-       const response = await productsService.getAllProducts();
-       this.products = response.data;
-     } catch (error) {
-       console.error("Error al obtener los productos", error);
-     }
+  computed: {
+    displayedProducts() {
+      const start = (this.currentPage-1) * this.pageSize;
+      const end = this.pageSize + start;
+      return this.products.slice(start, end);
+    },
+  },
+  methods: {
+    onPageChange(event) {
+      this.currentPage = event.page + 1;
+    },
+  },
+  async mounted() {
+    try {
+      const productsService = new ProductsApiService();
+      const response = await productsService.getAllProducts();
+      this.products = response.data;
+      this.totalRecords = this.products.length;
+    } catch (error) {
+      console.error("Error al obtener los productos", error);
+    }
   },
 };
 </script>
-
