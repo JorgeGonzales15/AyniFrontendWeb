@@ -116,52 +116,84 @@
   ],
   "products": [
     {
+      "id": 0,
       "name": "Brócoli",
-      "description": "Brócoli fresco y saludable",
-      "unit_price": 1.99,
-      "image_url": "https://www.thespruceeats.com/thmb/spjoOLmjTV4CbjY_YY2Ajw0pCWg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SES-broccoli-storage-and-selection-1807744-bf2d2de7326b40a9b00a165877ec314c.jpg"
+      "image_url": "https://www.thespruceeats.com/thmb/spjoOLmjTV4CbjY_YY2Ajw0pCWg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SES-broccoli-storage-and-selection-1807744-bf2d2de7326b40a9b00a165877ec314c.jpg",
+      "distance": "10 pulgadas",
+      "depth": "2 pulgadas",
+      "climate": "Templado",
+      "soilType": "Suelo bien drenado",
+      "season": "Primavera-Otoño"
     },
     {
+      "id": 1,
       "name": "Zanahoria",
-      "description": "Zanahoria crujiente y nutritiva",
-      "unit_price": 0.99,
-      "image_url": "https://wongfood.vtexassets.com/arquivos/ids/159244-800-auto?v=636089432532430000&width=800&height=auto&aspect=true"
+      "image_url": "https://wongfood.vtexassets.com/arquivos/ids/159244-800-auto?v=636089432532430000&width=800&height=auto&aspect=true",
+      "distance": "12 pulgadas",
+      "depth": "3 pulgadas",
+      "climate": "Templado",
+      "soilType": "Suelo arenoso",
+      "season": "Primavera-Verano"
     },
     {
+      "id": 2,
       "name": "Papa",
-      "description": "Papas haradas durante bastante tiempo",
-      "unit_price": 1.5,
-      "image_url": "https://tumercadoperu.com/wp-content/uploads/2020/11/3.png"
+      "image_url": "https://tumercadoperu.com/wp-content/uploads/2020/11/3.png",
+      "distance": "14 pulgadas",
+      "depth": "4 pulgadas",
+      "climate": "Frío",
+      "soilType": "Suelo arcilloso",
+      "season": "Otoño-Invierno"
     },
     {
+      "id": 3,
       "name": "Col",
-      "description": "Col fresca y sabrosa",
-      "unit_price": 1.25,
-      "image_url": "https://miquelsupermercat.com/wp-content/uploads/2020/04/Col-Blanca-Mercafruve.jpg"
+      "image_url": "https://miquelsupermercat.com/wp-content/uploads/2020/04/Col-Blanca-Mercafruve.jpg",
+      "distance": "8 pulgadas",
+      "depth": "2 pulgadas",
+      "climate": "Templado",
+      "soilType": "Suelo bien drenado",
+      "season": "Primavera-Otoño"
     },
     {
+      "id": 4,
       "name": "Lechuga",
-      "description": "Lechuga verde y crujiente",
-      "unit_price": 0.75,
-      "image_url": "https://biotrendies.com/wp-content/uploads/2015/07/lechuga.jpg"
+      "image_url": "https://biotrendies.com/wp-content/uploads/2015/07/lechuga.jpg",
+      "distance": "6 pulgadas",
+      "depth": "1 pulgada",
+      "climate": "Templado",
+      "soilType": "Suelo bien drenado",
+      "season": "Primavera-Otoño"
     },
     {
+      "id": 5,
       "name": "Tomate",
-      "description": "Tomate maduro y jugoso",
-      "unit_price": 0.99,
-      "image_url": "https://www.quironsalud.com/idcsalud-client/cm/images?locale=es_ES&idMmedia=2299323"
+      "image_url": "https://www.quironsalud.com/idcsalud-client/cm/images?locale=es_ES&idMmedia=2299323",
+      "distance": "18 pulgadas",
+      "depth": "3 pulgadas",
+      "climate": "Cálido",
+      "soilType": "Suelo bien drenado",
+      "season": "Primavera-Verano"
     },
     {
+      "id": 6,
       "name": "Manzana",
-      "description": "Manzanas frescas y dulces",
-      "unit_price": 1.25,
-      "image_url": "https://img.huffingtonpost.es/files/image_720_480/uploads/2022/12/10/639475b0d79b2.jpeg"
+      "image_url": "https://img.huffingtonpost.es/files/image_720_480/uploads/2022/12/10/639475b0d79b2.jpeg",
+      "distance": "24 pulgadas",
+      "depth": "5 pulgadas",
+      "climate": "Templado",
+      "soilType": "Suelo bien drenado",
+      "season": "Otoño-Invierno"
     },
     {
+      "id": 7,
       "name": "Naranja",
-      "description": "Naranjas jugosas y llenas de vitamina C",
-      "unit_price": 0.89,
-      "image_url": "https://tumercadoperu.com/wp-content/uploads/2020/08/naranja-huando-nacional.png"
+      "image_url": "https://tumercadoperu.com/wp-content/uploads/2020/08/naranja-huando-nacional.png",
+      "distance": "30 pulgadas",
+      "depth": "4 pulgadas",
+      "climate": "Cálido",
+      "soilType": "Suelo bien drenado",
+      "season": "Otoño-Invierno"
     }
   ],
   "activities": [
