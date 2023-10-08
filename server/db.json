@@ -116,7 +116,7 @@
   ],
   "products": [
     {
-      "id": 0,
+      "id": 1,
       "name": "Brócoli",
       "image_url": "https://www.thespruceeats.com/thmb/spjoOLmjTV4CbjY_YY2Ajw0pCWg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/SES-broccoli-storage-and-selection-1807744-bf2d2de7326b40a9b00a165877ec314c.jpg",
       "distance": "10 pulgadas",
@@ -126,7 +126,7 @@
       "season": "Primavera-Otoño"
     },
     {
-      "id": 1,
+      "id": 2,
       "name": "Zanahoria",
       "image_url": "https://wongfood.vtexassets.com/arquivos/ids/159244-800-auto?v=636089432532430000&width=800&height=auto&aspect=true",
       "distance": "12 pulgadas",
@@ -136,7 +136,7 @@
       "season": "Primavera-Verano"
     },
     {
-      "id": 2,
+      "id": 3,
       "name": "Papa",
       "image_url": "https://tumercadoperu.com/wp-content/uploads/2020/11/3.png",
       "distance": "14 pulgadas",
@@ -146,7 +146,7 @@
       "season": "Otoño-Invierno"
     },
     {
-      "id": 3,
+      "id": 4,
       "name": "Col",
       "image_url": "https://miquelsupermercat.com/wp-content/uploads/2020/04/Col-Blanca-Mercafruve.jpg",
       "distance": "8 pulgadas",
@@ -156,7 +156,7 @@
       "season": "Primavera-Otoño"
     },
     {
-      "id": 4,
+      "id": 5,
       "name": "Lechuga",
       "image_url": "https://biotrendies.com/wp-content/uploads/2015/07/lechuga.jpg",
       "distance": "6 pulgadas",
@@ -166,7 +166,7 @@
       "season": "Primavera-Otoño"
     },
     {
-      "id": 5,
+      "id": 6,
       "name": "Tomate",
       "image_url": "https://www.quironsalud.com/idcsalud-client/cm/images?locale=es_ES&idMmedia=2299323",
       "distance": "18 pulgadas",
@@ -176,7 +176,7 @@
       "season": "Primavera-Verano"
     },
     {
-      "id": 6,
+      "id": 7,
       "name": "Manzana",
       "image_url": "https://img.huffingtonpost.es/files/image_720_480/uploads/2022/12/10/639475b0d79b2.jpeg",
       "distance": "24 pulgadas",
@@ -186,7 +186,7 @@
       "season": "Otoño-Invierno"
     },
     {
-      "id": 7,
+      "id": 8,
       "name": "Naranja",
       "image_url": "https://tumercadoperu.com/wp-content/uploads/2020/08/naranja-huando-nacional.png",
       "distance": "30 pulgadas",
