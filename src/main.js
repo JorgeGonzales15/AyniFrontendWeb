@@ -55,7 +55,6 @@ app
     .component("pv-column", Column)
     .component('pv-toolbar', Toolbar)
     .component('pv-textarea', Textarea)
-    .component('pv-button', Button)
     .component('pv-row', Row)
     .component('pv-sidebar', Sidebar)
     .component('pv-menu', Menu)
