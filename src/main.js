@@ -34,6 +34,7 @@ import TabMenu from "primevue/tabmenu";
 import Fieldset from "primevue/fieldset";
 import Divider from "primevue/divider";
 import Carousel from "primevue/carousel";
+import Paginator from "primevue/paginator";
 
 const app = createApp(App)
 
@@ -67,4 +68,5 @@ app
     .component('pv-field-set', Fieldset)
     .component('pv-divider', Divider)
     .component('pv-carousel', Carousel)
+    .component('pv-paginator', Paginator)
     .mount('#app')
