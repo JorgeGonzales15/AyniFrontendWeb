@@ -16,6 +16,10 @@
         :rows="pageSize"
         :totalRecords="totalRecords"
     ></pv-paginator>
+
+    <router-link to="/products/add-product">
+      <pv-button class="add-button">Agregar Producto</pv-button>
+    </router-link>
   </div>
 </template>
 
