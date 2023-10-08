@@ -4,3 +4,15 @@
     <h2 class="product-name">{{ product.name }}</h2>
   </div>
 </template>
+
+
+<script>
+export default {
+  props: {
+    product: {
+      type: Object,
+      required: true,
+    },
+  },
+};
+</script>
