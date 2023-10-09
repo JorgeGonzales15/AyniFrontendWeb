@@ -51,9 +51,15 @@
         <div class=" form-image flex flex-column align-items-center gap-3 px-3">
           <label class="cursor-pointer" for="plantImage">Imagen de la Planta:</label>
           <input id="plantImage" class="hidden" type="file" @change="handleImageUpload">
-          </div>
+          <img :src="imagePreview || defaultImageUrl" alt="Vista previa de la imagen" class="max-w-15rem max-h-15rem">
+        </div>
 
       </form>
+      <p v-if="showMessage" class="message text-center">
+        {{
+          messageType === 'success' ? 'El producto ha sido agregado con éxito.' : (messageType === 'duplicate') ? 'El producto ya existe en la lista.' : 'Los datos estan incompletos'
+        }}
+      </p>
     </div>
     <pv-button class="button p-mr-2 hover:bg-green-700 border-none" type="submit" @click="addPlant">Agregar Planta
     </pv-button>
@@ -102,7 +108,6 @@ export default {
         return;
       }
 
-
       productsApiService.createProduct(JSON.stringify(this.newPlant)).then((response) => {
         console.log(response.data);
         this.messageType = 'success';
@@ -144,3 +149,49 @@ export default {
   }
 };
 </script>
+
+
+<style scoped>
+.form-container {
+  font-family: 'Archive', sans-serif;
+  width: 60%;
+  min-height: 522px;
+}
+.form-image, .form-text {
+  width: 50%;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.input {
+  color: white;
+  padding: 5px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid white;
+  outline: none;
+}
+.input::placeholder {
+  color: white;
+}
+.message {
+  color: rgba(59, 251, 3, 0.98);
+}
+.button {
+  background-color: rgb(37, 183, 19);
+}
+@media screen and (max-width: 768px) {
+  .form {
+    flex-direction: column;
+  }
+  .form-container {
+    width: 80%;
+  }
+  .form-image, .form-text {
+    width: 100%;
+    padding: 20px;
+  }
+}
+</style>
