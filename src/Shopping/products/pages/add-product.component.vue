@@ -51,11 +51,9 @@
         <div class=" form-image flex flex-column align-items-center gap-3 px-3">
           <label class="cursor-pointer" for="plantImage">Imagen de la Planta:</label>
           <input id="plantImage" class="hidden" type="file" @change="handleImageUpload">
-          <img :src="imagePreview || defaultImageUrl" alt="Vista previa de la imagen" class="max-w-15rem max-h-15rem">
-        </div>
+          </div>
 
       </form>
-
     </div>
     <pv-button class="button p-mr-2 hover:bg-green-700 border-none" type="submit" @click="addPlant">Agregar Planta
     </pv-button>
@@ -81,6 +79,8 @@ export default {
       },
       selectedImage: null,
       imagePreview: null,
+      showMessage: false,
+      messageType: '',
       defaultImageUrl: 'https://static.vecteezy.com/system/resources/previews/004/141/669/non_2x/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg',
     };
   },
@@ -88,6 +88,8 @@ export default {
     async addPlant() {
 
       if (this.isFormIncomplete()) {
+        this.messageType = 'incomplete';
+        this.showMessage = true;
         return;
       }
       const productsApiService = new ProductsApiService();
@@ -95,14 +97,19 @@ export default {
       const isDuplicate = Array.isArray(verify.data) && verify.data.length > 0;
 
       if (isDuplicate) {
+        this.messageType = 'duplicate';
+        this.showMessage = true;
         return;
       }
 
 
       productsApiService.createProduct(JSON.stringify(this.newPlant)).then((response) => {
         console.log(response.data);
+        this.messageType = 'success';
+        this.showMessage = true;
 
       }).catch((error) => {
+        this.showMessage = false;
         console.error("Error al crear el registro:", error);
       });
 
