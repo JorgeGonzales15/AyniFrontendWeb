@@ -51,9 +51,11 @@
         <div class=" form-image flex flex-column align-items-center gap-3 px-3">
           <label class="cursor-pointer" for="plantImage">Imagen de la Planta:</label>
           <input id="plantImage" class="hidden" type="file" @change="handleImageUpload">
-          </div>
+          <img :src="imagePreview || defaultImageUrl" alt="Vista previa de la imagen" class="max-w-15rem max-h-15rem">
+        </div>
 
       </form>
+
     </div>
     <pv-button class="button p-mr-2 hover:bg-green-700 border-none" type="submit" @click="addPlant">Agregar Planta
     </pv-button>
@@ -114,11 +116,13 @@ export default {
         image_url: null
       };
       this.selectedImage = null;
+      this.imagePreview = null;
     },
     handleImageUpload(event) {
       const file = event.target.files[0];
       if (file) {
         this.selectedImage = file;
+        this.imagePreview = URL.createObjectURL(file);
       }
     },
     isFormIncomplete() {
