@@ -3,7 +3,7 @@
 
     <div class="form-container bg-black-alpha-50 py-3 px-4  border-round-xl shadow-6">
       <h2 class="text-center">Ingrese los datos de la nueva planta</h2>
-      <form class="form flex text-sm align-items-center" @submit.prevent="addPlant">
+      <form class="form flex flex-wrap text-sm align-items-center justify-content-around gap-4" @submit.prevent="addPlant">
 
         <div class="form-text flex flex-column gap-3 px-3">
           <div class="form-group">
@@ -157,9 +157,11 @@ export default {
   width: 60%;
   min-height: 522px;
 }
-.form-image, .form-text {
-  width: 50%;
+
+.form-text{
+  min-width: 360px;
 }
+
 .form-group {
   display: flex;
   flex-direction: column;
@@ -183,15 +185,8 @@ export default {
   background-color: rgb(37, 183, 19);
 }
 @media screen and (max-width: 768px) {
-  .form {
-    flex-direction: column;
-  }
   .form-container {
     width: 80%;
-  }
-  .form-image, .form-text {
-    width: 100%;
-    padding: 20px;
   }
 }
 </style>
