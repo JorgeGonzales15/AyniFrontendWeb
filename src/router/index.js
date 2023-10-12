@@ -13,6 +13,7 @@ import cropscardstep1Content from "@/Management/crops/components/card-step1-cont
 import cropscardstep2Content from "@/Management/crops/components/card-step2-content.vue";
 import cropscardstep3Content from "@/Management/crops/components/card-step3-content.vue";
 import Cards from "@/Finance/components/cost-main-content/Cards.vue";
+import MyOrders from "@/Shopping/orders/components/cards-content.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -23,6 +24,7 @@ const router = createRouter({
     { path: "/select-rol",name: "select-rol", component: SelectRolComponent},
     { path: "/farmer-home", name: "farmer-home", component: FarmerHomeComponent },
     { path: "/merchant-home", name: "merchant-home", component: MerchantHomeComponent },
+    { path: "/my-orders", name: "my-orders", component: MyOrders },
     { path: "/costs", name: "costs", component: Cards },
     { path: "/sales/", props: true, component: salesstepperContent,
       children: [
