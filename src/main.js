@@ -33,8 +33,10 @@ import SplitButton from "primevue/splitbutton";
 import TabMenu from "primevue/tabmenu";
 import Fieldset from "primevue/fieldset";
 import Divider from "primevue/divider";
-import Carousel from "primevue/carousel";
+import Carousel from "primevue/carousel"
+import DataView from "primevue/dataview";
 import store from "@/store/store";
+import Rating from "primevue/rating";
 
 const app = createApp(App)
 
@@ -69,4 +71,6 @@ app
     .component('pv-field-set', Fieldset)
     .component('pv-divider', Divider)
     .component('pv-carousel', Carousel)
+    .component('pv-data-view', DataView)
+    .component('pv-rating', Rating)
     .mount('#app')

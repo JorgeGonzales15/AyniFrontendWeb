@@ -59,9 +59,9 @@ export default {
       ],
       routesMerchant: [
         { label: "Home", to: "/merchant-home" },
-        { label: "Find Products", to: "/sales/step-1"},
-        { label: "My Shopping", to: "/merchant-home"},
-        { label: "Rate", to: "/merchant-home"}
+        { label: "Find Products", to: "/find-products"},
+        { label: "My Shopping", to: "/my-shopping"},
+        { label: "Rate", to: "/rates"}
       ]
     };
   },

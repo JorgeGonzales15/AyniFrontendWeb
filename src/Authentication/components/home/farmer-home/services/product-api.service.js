@@ -1,8 +1,5 @@
-import axios from "axios";
+import http from "../../../../../shared/services/http-common";
 
-const http = axios.create({
-    baseURL: 'https://my-json-server.typicode.com/JorgeGonzales15/AyniFakeApi'
-})
 export class ProductApiService{
     endPoint = 'products'
     getAll() {
