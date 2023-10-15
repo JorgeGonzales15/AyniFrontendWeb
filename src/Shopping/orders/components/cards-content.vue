@@ -6,7 +6,7 @@
       <h2 class="center">My Orders:</h2>
       <div class="carousel-display">
 
-        <pv-card v-for="order in orders" class="farmer-home-card">
+        <pv-card v-for="order in paginatedOrders" class="farmer-home-card">
 
           <template #header>
             <img :src="order.orders.image_url" class="centered-image"/>
@@ -31,18 +31,15 @@
             <pv-button icon="pi pi-times" label="Decline" severity="secondary" style="margin-left: 0.5em" />
           </template>
 
-
         </pv-card>
-
-
 
       </div>
     </div>
 
-
   </div>
   <p></p>
-  <pv-paginator :rows="10" :totalRecords="120" :rowsPerPageOptions="[10, 20, 30]"></pv-paginator>
+  <pv-paginator v-model:first="first" :rows="3" :totalRecords="totalRecords"></pv-paginator>
+
 </template>
 
 <script>
@@ -58,10 +55,22 @@ export default {
       orders: [],
       ordersService: new OrdersService(),
       columns: null,
+      first: 0,
+      totalRecords: 0
+    }
+  },
+  computed: {
+    paginatedOrders() {
+      const start = this.first;
+      const end = start + 3;
+      return this.orders.slice(start, end);
     }
   },
   mounted() {
-    this.ordersService.getAll().then((response) => (this.orders = response.data.slice(0,3)));
+    this.ordersService.getAll().then((response) => {
+      this.orders = response.data.slice(0, 6);
+      this.totalRecords = response.data.length; // Calcula el total de registros
+    });
   }
 };
 </script>
