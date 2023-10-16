@@ -13,6 +13,9 @@ import cropscardstep1Content from "@/Management/crops/components/card-step1-cont
 import cropscardstep2Content from "@/Management/crops/components/card-step2-content.vue";
 import cropscardstep3Content from "@/Management/crops/components/card-step3-content.vue";
 import Cards from "@/Finance/components/cost-main-content/Cards.vue";
+import MyShoppingPage from "@/Shopping/shop/pages/my-shopping.page.vue";
+import RatePage from "@/Shopping/rates/pages/rate.page.vue";
+import FindProductPage from "@/Shopping/shop/pages/find-product.page.vue";
 import MyOrders from "@/Shopping/orders/components/cards-content.vue";
 import CropsContent from "@/Management/crops/components/crops-content.vue";
 
@@ -27,6 +30,9 @@ const router = createRouter({
     { path: "/merchant-home", name: "merchant-home", component: MerchantHomeComponent },
     { path: "/my-orders", name: "my-orders", component: MyOrders },
     { path: "/costs", name: "costs", component: Cards },
+    { path: "/my-shopping", name: "my-shopping", component: MyShoppingPage },
+    { path: "/rates", name: "rates", component: RatePage },
+    { path: "/find-products", name: "find-products", component: FindProductPage },
     { path: "/crops-content", name: "crops-content", component: CropsContent },
     { path: "/sales/", props: true, component: salesstepperContent,
       children: [
