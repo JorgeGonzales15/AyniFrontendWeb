@@ -37,6 +37,7 @@ import Carousel from "primevue/carousel"
 import DataView from "primevue/dataview";
 import store from "@/store/store";
 import Rating from "primevue/rating";
+import Paginator from "primevue/paginator";
 
 const app = createApp(App)
 
@@ -68,6 +69,7 @@ app
     .component('pv-tab-menu', TabMenu)
     .component('pv-split-button', SplitButton)
     .component('pv-avatar', Avatar)
+    .component('pv-paginator', Paginator)
     .component('pv-field-set', Fieldset)
     .component('pv-divider', Divider)
     .component('pv-carousel', Carousel)
