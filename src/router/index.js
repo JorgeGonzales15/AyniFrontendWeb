@@ -18,6 +18,8 @@ import RatePage from "@/Shopping/rates/pages/rate.page.vue";
 import FindProductPage from "@/Shopping/shop/pages/find-product.page.vue";
 import MyOrders from "@/Shopping/orders/components/cards-content.vue";
 import CropsContent from "@/Management/crops/components/crops-content.vue";
+import ProductsComponent from "@/Shopping/products/pages/products.component.vue";
+import AddProductComponent from "@/Shopping/products/pages/add-product.component.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -34,6 +36,9 @@ const router = createRouter({
     { path: "/rates", name: "rates", component: RatePage },
     { path: "/find-products", name: "find-products", component: FindProductPage },
     { path: "/crops-content", name: "crops-content", component: CropsContent },
+    { path: "/product", name: "products", component: ProductsComponent},
+    { path: "/products/add-product", name: "add-product", component: AddProductComponent },
+
     { path: "/sales/", props: true, component: salesstepperContent,
       children: [
         { path: "/sales/", name: "stepper-content", props: true, component: salesstepperContent,},
