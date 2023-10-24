@@ -8,7 +8,7 @@ Ayni is a web application built with Vue.js designed to facilitate the managemen
 - Adding and recording crop details
 - Cost and profit management
 - Listing products for sale
-- Sales management
+- Orders management
 
 ## For Traders:
 
