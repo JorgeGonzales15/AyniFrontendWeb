@@ -12,7 +12,7 @@ Ayni is a web application built with Vue.js designed to facilitate the managemen
 
 ## For Traders:
 
-- Exploring high-quality products
+- Exploring crops
 - Making purchases and placing orders
 - Tracking purchase status
 - Rating agricultural products
@@ -31,8 +31,4 @@ Ayni is a web application built with Vue.js designed to facilitate the managemen
 
 ---
 
-## How to Get Started
 
-1. Clone this repository.
-2. Install the required dependencies using `npm install`.
-3. Run the application using `npm run serve`.
