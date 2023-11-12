@@ -84,6 +84,7 @@ export default {
 <style>
 .center{
   text-align: center;
+  margin: 0 auto;
   background-color: transparent !important;
 }
 .field-set{

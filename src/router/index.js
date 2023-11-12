@@ -20,6 +20,11 @@ import MyOrders from "@/Shopping/orders/components/cards-content.vue";
 import CropsContent from "@/Management/crops/components/crops-content.vue";
 import ProductsComponent from "@/Shopping/products/pages/products.component.vue";
 import AddProductComponent from "@/Shopping/products/pages/add-product.component.vue";
+import SelectTransactionPage from "@/Finance/pages/select-transaction.page.vue";
+import CostsPage from "@/Finance/pages/costs.page.vue";
+import ProfitsPage from "@/Finance/pages/profits.page.vue";
+import AddProfitPage from "@/Finance/pages/add-profit.page.vue";
+import AddCostPage from "@/Finance/pages/add-cost.page.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -31,7 +36,11 @@ const router = createRouter({
     { path: "/farmer-home", name: "farmer-home", component: FarmerHomeComponent },
     { path: "/merchant-home", name: "merchant-home", component: MerchantHomeComponent },
     { path: "/my-orders", name: "my-orders", component: MyOrders },
-    { path: "/costs", name: "costs", component: Cards },
+    { path: "/select-transaction", name: "select-transaction", component: SelectTransactionPage },
+    { path: "/costs", name: "costs", component: CostsPage },
+    { path: "/costs/add-cost", name: "add-cost", component: AddCostPage },
+    { path: "/profits", name: "profits", component: ProfitsPage },
+    { path: "/profits/add-profit", name: "add-profit", component: AddProfitPage },
     { path: "/my-shopping", name: "my-shopping", component: MyShoppingPage },
     { path: "/rates", name: "rates", component: RatePage },
     { path: "/find-products", name: "find-products", component: FindProductPage },
