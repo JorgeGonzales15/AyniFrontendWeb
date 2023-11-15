@@ -1,8 +1,8 @@
 <template>
   <div class="grid-container container">
     <div class="itemCalendar">
-      <h3>Today Activities</h3>
-      <pv-data-table class="p-datatable-sm" :value="activities" tableStyle="max-width: 30rem">
+      <h3 class="header">Today Activities</h3>
+      <pv-data-table class="p-datatable-sm" :value="activities" tableStyle="max-width: 100rem">
         <pv-column v-for="col of columns" :key="col.field" :field="col.field" :header="col.header"></pv-column>
       </pv-data-table>
     </div>
@@ -10,23 +10,29 @@
       <img src="./../../../../../assets/logo.png">
     </div>
     <div class="itemAdvertising">
-      <h1>ItemAdvertising</h1>
+      <h3 class="header">Financials</h3>
+      <pv-data-table class="p-datatable-sm" :value="profits" tableStyle="max-width: 100rem">
+        <pv-column v-for="col of columnsF" :key="col.field" :field="col.field" :header="col.header"></pv-column>
+      </pv-data-table>
     </div>
 
     <div class="itemCarousel">
-      <h2 class="center">Recent Products</h2>
+      <h2 class="header">Recent Products</h2>
       <div class="carousel-display">
         <pv-card v-for="product in products" class="farmer-home-card">
           <template #header>
-            <img :src="product.image_url" width="350px">
+            <img
+                src="https://th.bing.com/th/id/OIP.BLM0pFxm4dnZFahpArbaAQHaE9?pid=ImgDet&rs=1"
+                width="350" height="150" class="w-100">
           </template>
-
           <template #content>
-            <p>Unit Price: {{ product.unit_price }}</p>
-            <p>Description: {{ product.description }}</p>
+            <p><span class="font-bold">Unit Price:</span> {{ product.unitPrice }}</p>
+            <p><span class="font-bold">Description:</span> {{ product.description }}</p>
           </template>
           <template #footer>
-            <pv-button>{{ product.name }}</pv-button>
+            <div class="w-100">
+              <pv-button severity="success" class="product-button">{{ product.name }}</pv-button>
+            </div>
           </template>
         </pv-card>
       </div>
@@ -36,8 +42,9 @@
 
 <script>
 
-import {ProductApiService} from "@/Authentication/components/home/farmer-home/services/product-api.service";
 import {ActivityApiService} from "@/Authentication/components/home/farmer-home/services/activity-api.service";
+import {UserProfitsApiService} from "@/Finance/services/userProfits-api.service";
+import {ProductsApiService} from "@/Shopping/products/services/products-api.service";
 
 export default {
   name: "farmer-home",
@@ -45,10 +52,18 @@ export default {
     return {
       products: [],
       activities: [],
-      productApi: new ProductApiService(),
+      profits: [],
+      productApi: new ProductsApiService(),
       activityApi: new ActivityApiService(),
+      profitsApi: new UserProfitsApiService(),
       columns: null,
+      columnsF: null
     };
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
   },
   created() {
     this.columns = [
@@ -56,16 +71,36 @@ export default {
       { field: 'description', header: 'Description' },
       { field: 'start_date', header: 'Start Date' },
       { field: 'finish_date', header: 'Finish Date' }
+    ],
+    this.columnsF = [
+      { field: 'nameP', header: 'Name' },
+      { field: 'descriptionP', header: 'Description' },
+      { field: 'amountP', header: 'Amount' }
     ];
   },
   mounted() {
-    this.productApi.getAll().then((response) => (this.products = response.data.slice(0,3)));
+    this.productApi.getAllProducts().then((response) => (this.products = response.data.slice(0,3)));
     this.activityApi.getAll().then((response) => (this.activities = response.data.slice(0,3)));
+    this.profitsApi.getAllProfits(this.currentUser.id).then((response) => (this.profits = response.data.slice(0,3)));
   }
 };
 </script>
 
 <style>
+.header{
+  background-color: rgba(9, 215, 74, 0.94);
+  padding: 0.2rem;
+  border-radius: 1rem;
+  width: 100%;
+  text-align: center;
+}
+.w-100{
+  width: 100%;
+}
+.product-button{
+  width: 100%;
+  text-align: center;
+}
 .container{
   max-width: 1400px;
   margin: 0 auto;
