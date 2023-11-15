@@ -1,17 +1,16 @@
 <template class="nav">
-  <pv-toolbar class="toolbar">
+  <pv-toolbar class="toolbar" v-if="this.currentUser">
     <template #start>
       <pv-split-button :model="items" icon="pi pi-plus" severity="secondary" text>
         <pv-avatar icon="pi pi-user" class="mr-2" size="large"/>
-        <p>Welcome, <span>user.email</span></p>
+        <p>Welcome, <span>{{ currentUser.username }}</span></p>
       </pv-split-button>
     </template>
 
     <template #end>
-      <div class="nav-button-container">
+      <div v-if="rolWatcher === 'merchant'" class="nav-button-container">
         <router-link v-for="route in routesMerchant"
                      :to="route.to"
-                     v-if="rolWatcher === 'merchant'"
                      custom
                      v-slot="{ navigate, href }"
                      :key="route.label">
@@ -22,10 +21,10 @@
                      text></pv-button>
         </router-link>
       </div>
-      <div class="nav-button-container">
+      <div v-else class="nav-button-container">
         <router-link v-for="route in routesFarmer"
                      :to="route.to"
-                     v-if="rolWatcher === 'farmer'"
+
                      custom
                      v-slot="{ navigate, href }"
                      :key="route.label">
@@ -49,7 +48,7 @@ export default {
       rol: null,
       items: [
         { label: 'farmer', icon: 'pi pi-user' },
-        { label: 'Logout', icon: 'pi pi-fw pi-power-off', to: "/signin"}
+        { label: 'Logout', icon: 'pi pi-fw pi-power-off', command: () => { this.logOut(); } }
       ],
       routesFarmer: [
         { label: "Home", to: "/farmer-home" },
@@ -67,9 +66,18 @@ export default {
   },
   computed: {
     rolWatcher() {
-      return this.$store.getters['authentication/getUserRol'];
+      return this.$store.getters['auth/getUserRol'];
+    },
+    currentUser() {
+      return this.$store.state.auth.user;
     }
   },
+  methods: {
+    logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/signin');
+    }
+  }
 }
 </script>
 
