@@ -9,6 +9,7 @@ const http = axios.create({
 export class UserProfitsApiService{
     endPoint = 'users'
     getAllProfits(id) {
+        console.log("getting all profits from id")
         return http.get(`${this.endPoint}/${id}/profits`);
     }
 }
