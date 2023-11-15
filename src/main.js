@@ -41,6 +41,8 @@ import Paginator from "primevue/paginator";
 
 const app = createApp(App)
 
+// Install components globally
+
 app
     .use(router)
     .use(ToastService)

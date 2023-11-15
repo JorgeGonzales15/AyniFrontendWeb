@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "https://my-json-server.typicode.com/JorgeGonzales15/AyniPlaceholder5",
+    baseURL: 'http://jorgegc-001-site1.btempurl.com/api/v1',
     headers: {'Content-Type': 'application/json'},
 });
