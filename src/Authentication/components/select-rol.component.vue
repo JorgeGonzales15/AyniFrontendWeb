@@ -70,11 +70,11 @@ export default {
   name: "select-rol",
   methods: {
     onMerchantSelected() {
-      this.$store.dispatch('authentication/updateRol', 'merchant');
+      this.$store.dispatch('auth/updateRol', 'merchant');
       this.$router.push("/merchant-home");
     },
     onFarmerSelected() {
-      this.$store.dispatch('authentication/updateRol', 'farmer');
+      this.$store.dispatch('auth/updateRol', 'farmer');
       this.$router.push("/farmer-home");
     }
   }
