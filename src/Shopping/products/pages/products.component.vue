@@ -61,6 +61,7 @@ export default {
     try {
       const productsService = new ProductsApiService();
       const response = await productsService.getAllProducts();
+      console.log(response.data);
       this.products = response.data;
       this.totalRecords = this.products.length;
     } catch (error) {

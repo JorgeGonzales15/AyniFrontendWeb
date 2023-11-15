@@ -10,6 +10,7 @@
       </pv-data-table>
 
     </div>
+
     <div class="itemLogo">
       <img src="./../../../../../assets/logo.png">
     </div>

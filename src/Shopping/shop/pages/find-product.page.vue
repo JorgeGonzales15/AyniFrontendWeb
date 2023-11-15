@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import {ProductApiService} from "@/Authentication/components/home/farmer-home/services/product-api.service";
 import FindProductMain from "@/Shopping/shop/components/find-product-main.component.vue";
 import FindProductSelected from "@/Shopping/shop/components/find-product-selected.component.vue";
+import {ProductsApiService} from "@/Shopping/products/services/products-api.service";
 
 export default {
   name: "find-product",
@@ -22,11 +22,11 @@ export default {
     return {
       products: null,
       product: null,
-      productApi: new ProductApiService()
+      productApi: new ProductsApiService()
     }
   },
   mounted() {
-    this.productApi.getAll().then((response) => {
+    this.productApi.getAllProducts().then((response) => {
       this.products = response.data;
     })
   },
