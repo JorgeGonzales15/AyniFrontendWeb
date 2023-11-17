@@ -1,8 +1,8 @@
 <template>
   <div class="grid-container container">
     <div class="itemCalendar">
-      <h3>Your Orders</h3>
-      <pv-data-table class="p-datatable-sm" :value="payments" tableStyle="max-width: 30rem">
+      <h3 class="header">Your Orders</h3>
+      <pv-data-table class="p-datatable-sm" :value="orders" tableStyle="max-width: 100rem">
         <pv-column v-for="col of columns"
                    :key="col.field"
                    :field="col.field"
@@ -19,22 +19,22 @@
     </div>
 
     <div class="itemCarousel">
-      <h2 class="center">Recent Orders</h2>
+      <h2 class="header">Recent Products</h2>
       <div class="carousel-display">
-        <pv-card v-for="order in orders">
+        <pv-card v-for="product in products" class="farmer-home-card">
           <template #header>
-            <div class="flex justify-content-center image-container">
-              <img class="image" :src="order.product.image_url" width="300" height="200">
-            </div>
+            <img
+                src="https://th.bing.com/th/id/OIP.BLM0pFxm4dnZFahpArbaAQHaE9?pid=ImgDet&rs=1"
+                width="350" height="150" class="w-100">
           </template>
-
           <template #content>
-            <p>Quantity: {{ order.quantity }}</p>
-            <p>Unit Price: {{ order.product.unit_price }}</p>
-            <p>{{ order.product.description }}</p>
+            <p><span class="font-bold">Unit Price:</span> {{ product.unitPrice }}</p>
+            <p><span class="font-bold">Description:</span> {{ product.description }}</p>
           </template>
           <template #footer>
-            <pv-button @click="toMyShoppingPage">{{ order.product.name }}</pv-button>
+            <div class="w-100">
+              <pv-button severity="success" class="product-button">{{ product.name }}</pv-button>
+            </div>
           </template>
         </pv-card>
       </div>
@@ -44,35 +44,31 @@
 
 <script>
 
-import {PaymentsApiService} from "@/Authentication/components/home/merchant-home/services/payments-api.service";
 import {OrderApiService} from "@/Shopping/shop/services/order-api.service";
+import {ProductsApiService} from "@/Shopping/products/services/products-api.service";
 
 export default {
   name: "merchant-home",
   data() {
     return {
       orders: [],
-      payments: [],
+      products: [],
       //orderDetailApi: new OrderDetailsApiService(),
       ordersApi: new OrderApiService(),
-      paymentApi: new PaymentsApiService(),
-      columns: null,
-      responsiveOptions: [
-        {breakpoint: '1199px', numVisible: 3, numScroll: 3},
-        {breakpoint: '991px', numVisible: 2, numScroll: 2},
-        {breakpoint: '767px', numVisible: 1, numScroll: 1}
-      ]
+      productApi: new ProductsApiService(),
+      columns: null
     };
   },
   created() {
     this.columns = [
-      { field: 'order_detail.product.name', header: 'Name' },
-      { field: 'payment_method.name', header: 'Payment' },
-      { field: 'ordered_date', header: 'Ordered Date' }
+      { field: 'status', header: 'Status' },
+      { field: 'paymentMethod', header: 'Payment' },
+      { field: 'orderedDate', header: 'Ordered Date' },
+      { field: 'description', header: 'Description' }
     ];
   },
   mounted() {
-    this.paymentApi.getAll().then((response) => (this.payments = response.data.slice(0,5)));
+    this.productApi.getAllProducts().then((response) => (this.products = response.data.slice(0,3)));
     this.ordersApi.getAll().then((response) => (this.orders = response.data.slice(0,3)));
   },
   methods: {
