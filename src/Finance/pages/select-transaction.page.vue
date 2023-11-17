@@ -42,6 +42,11 @@ export default {
       userCostsApi: new UserCostsApiService()
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     onCostsSelected(){
       this.$router.push("/costs");
@@ -51,8 +56,8 @@ export default {
     }
   },
   mounted() {
-    this.userProfitsApi.getAllProfits(1).then((response) => this.profits = response.data.slice(0, 5));
-    this.userCostsApi.getAllCosts(1).then((response) => this.costs = response.data.slice(0, 5));
+    this.userProfitsApi.getAllProfits(this.currentUser.id).then((response) => this.profits = response.data.slice(0, 5));
+    this.userCostsApi.getAllCosts(this.currentUser.id).then((response) => this.costs = response.data.slice(0, 5));
   }
 }
 </script>

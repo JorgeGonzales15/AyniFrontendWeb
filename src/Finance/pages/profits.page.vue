@@ -50,6 +50,9 @@ export default {
       const end = this.pageSize + start;
       return this.profits.slice(start, end);
     },
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
   },
   methods: {
     onReturn(){
@@ -63,7 +66,7 @@ export default {
     }
   },
   mounted() {
-    this.userProfitApi.getAllProfits(1).then((response) => {
+    this.userProfitApi.getAllProfits(this.currentUser.id).then((response) => {
       this.profits = response.data;
       this.totalRecords = this.profits.length;
     });

@@ -61,6 +61,11 @@ export default{
       messageType: '',
     }
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
   methods: {
     onReturn(){
       this.$router.push("/profits");
@@ -83,7 +88,7 @@ export default{
       profitData.nameP = this.newProfit.name;
       profitData.amountP = parseInt(this.newProfit.amount);
       profitData.descriptionP = this.newProfit.description;
-      profitData.userId = 1;
+      profitData.userId = this.currentUser.id;
 
       console.log(profitData);
 
@@ -94,6 +99,7 @@ export default{
       }).catch((error) => {
         this.showMessage = false;
         console.error("Error al crear el registro:", error);
+        this.messageType = error.response.data;
       });
 
     }

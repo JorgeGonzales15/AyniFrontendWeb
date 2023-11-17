@@ -9,21 +9,22 @@
         <pv-card v-for="order in paginatedOrders" class="farmer-home-card">
 
           <template #header>
-            <img :src="order.orders.image_url" class="centered-image"/>
+            <img src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=ejx13G9ZroRrcg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fuser-png-icon-young-user-icon-2400.png&ehk=NNF6zZUBr0n5i%2fx0Bh3AMRDRDrzslPXB0ANabkkPyv0%3d&risl=&pid=ImgRaw&r=0"
+                 class="centered-image" width="200" height="200"/>
           </template>
           
-          <template #title> {{order.orders.merchant_name}}</template>
-          <template #subtitle> Requested product: {{order.orders.product_name}} </template>
+          <template #title> {{order.user.username}}</template>
+          <template #subtitle> Requested product: {{order.user.username}} </template>
           <template #content>
 
-            Date: {{order.orders.date}}
+            Date: {{order.orderedDate}}
             <p></p>
 
-              Description: {{order.orders.description}}
+              Description: {{order.description}}
               <p></p>
-              Price: {{order.orders.price}}
+              Price: {{order.totalPrice}}
               <p></p>
-              Quantity: {{order.orders.quantity}}
+              Payment Method: {{order.paymentMethod}}
 
           </template>
           <template #footer>
@@ -44,7 +45,7 @@
 
 <script>
 
-import {OrdersService} from "@/Shopping/orders/services/orders.service";
+import {UserOrdersApiService} from "@/Shopping/orders/services/UserOrders-api.service";
 
 export default {
   name: "my-orders",
@@ -53,7 +54,7 @@ export default {
   data(){
     return{
       orders: [],
-      ordersService: new OrdersService(),
+      ordersService: new UserOrdersApiService(),
       columns: null,
       first: 0,
       totalRecords: 0
@@ -64,10 +65,13 @@ export default {
       const start = this.first;
       const end = start + 3;
       return this.orders.slice(start, end);
+    },
+    currentUser() {
+      return this.$store.state.auth.user;
     }
   },
   mounted() {
-    this.ordersService.getAll().then((response) => {
+    this.ordersService.getAllOrders(this.currentUser.id).then((response) => {
       this.orders = response.data.slice(0, 6);
       this.totalRecords = response.data.length; // Calcula el total de registros
     });

@@ -50,6 +50,9 @@ export default {
       const end = this.pageSize + start;
       return this.costs.slice(start, end);
     },
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
   },
   methods: {
     onPageChange(event) {
@@ -63,7 +66,7 @@ export default {
     }
   },
   mounted() {
-    this.userCostsApi.getAllCosts(1).then((response) => {
+    this.userCostsApi.getAllCosts(this.currentUser.id).then((response) => {
       this.costs = response.data;
       this.totalRecords = this.costs.length;
     });

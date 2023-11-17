@@ -29,9 +29,7 @@
         </div>
       </form>
       <p v-if="showMessage" class="message text-center">
-        {{
-          messageType === 'success' ? 'The profit succesfully added.' : 'All camps are required'
-        }}
+        {{ message }}
       </p>
       <div class="center pt-8">
         <pv-button class="button p-mr-2 hover:bg-green-700 border-none" severity="success" type="submit" @click="addProfit">Add Cost
@@ -59,7 +57,12 @@ export default{
       newCost: {},
       costsApi: new CostsApiService(),
       showMessage: false,
-      messageType: '',
+      message: '',
+    }
+  },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
     }
   },
   methods: {
@@ -73,7 +76,7 @@ export default{
     },
     async addProfit() {
       if (this.isFormIncomplete()) {
-        this.messageType = 'incomplete';
+        this.message = 'All camps are required';
         this.showMessage = true;
         return;
       }
@@ -84,17 +87,18 @@ export default{
       profitData.name = this.newCost.name;
       profitData.amount = parseInt(this.newCost.amount);
       profitData.description = this.newCost.description;
-      profitData.userId = 1;
+      profitData.userId = this.currentUser.id;
 
       console.log(profitData);
 
       this.costsApi.createCost(JSON.stringify(profitData)).then((response) => {
         console.log(response.data);
-        this.messageType = 'success';
+        this.message = 'Cost Successfully Added';
         this.showMessage = true;
       }).catch((error) => {
-        this.showMessage = false;
-        console.error("Error al crear el registro:", error);
+        this.showMessage = true;
+        this.message = error.response.data;
+        console.error("Error al crear el registro:", error.response.data);
       });
 
     }
