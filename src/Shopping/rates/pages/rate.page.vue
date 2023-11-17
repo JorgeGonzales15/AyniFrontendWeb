@@ -5,15 +5,15 @@
       <template #list="slotProps">
         <div class="col-12 rates-container">
           <div class="rates-image">
-            <img :src="`${slotProps.data.image_url}`" width="300" height="200">
+            <img :src="`${slotProps.data.imageUrl}`" width="300" height="200">
             <p>
-              <pv-button :label="slotProps.data.product.name" severity="secondary" raise class="rates-button"/>
+              <pv-button :label="slotProps.data.user.username" severity="secondary" raise class="rates-button"/>
             </p>
           </div>
           <div class="rates-properties">
             <p>
               Date of purchase:
-              {{ slotProps.data.ordered_date }}
+              {{ slotProps.data.orderedDate }}
             </p>
             <p>
               Quantity:
@@ -21,11 +21,11 @@
             </p>
             <p>
               Producer:
-              {{ slotProps.data.username }}
+              {{ slotProps.data.user.username }}
             </p>
             <p>
               Price:
-              {{ slotProps.data.product.unit_price }}
+              {{ slotProps.data.totalPrice }}
             </p>
             <span class="rates-values">
               <pv-rating v-model="value" :cancel="false" />

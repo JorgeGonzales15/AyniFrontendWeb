@@ -5,7 +5,7 @@
       <template #list="slotProps">
         <div class="col-4">
           <div class="item">
-            <img :src="`${slotProps.data.image_url}`" width="300" height="200">
+            <img src="https://th.bing.com/th/id/OIP.BLM0pFxm4dnZFahpArbaAQHaE9?pid=ImgDet&rs=1" width="300" height="200">
             <p><pv-button class="find-button"
                           :label="slotProps.data.name"
                           @click="onSelectedProduct(slotProps.data)"></pv-button></p>

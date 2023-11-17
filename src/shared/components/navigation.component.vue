@@ -8,7 +8,7 @@
     </template>
 
     <template #end>
-      <div v-if="rolWatcher === 'merchant'" class="nav-button-container">
+      <div v-if="rolWatcher !== 'merchant'" class="nav-button-container">
         <router-link v-for="route in routesMerchant"
                      :to="route.to"
                      custom

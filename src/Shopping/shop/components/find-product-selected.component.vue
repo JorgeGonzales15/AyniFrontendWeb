@@ -4,7 +4,7 @@
     <div class="display">
       <div class="calendar-display">
         <div class="product-img">
-          <img :src="product.image_url" width="300" height="200">
+          <img src="https://th.bing.com/th/id/OIP.BLM0pFxm4dnZFahpArbaAQHaE9?pid=ImgDet&rs=1" width="300" height="200">
         </div>
         <img :src="product.image_url" width="300" height="200">
       </div>
