@@ -120,8 +120,7 @@ export default {
           .dispatch("auth/register", { username: this.username, email: this.email, password: this.password })
           .then(
               () => {
-                if (this.$store.state.auth.user.rol !== undefined) this.$router.push("/farmer-home");
-                else this.$router.push("/merchant-home");
+                this.message = "Register successfully return to Sign In"
               },
               (error) => {
                 this.message =

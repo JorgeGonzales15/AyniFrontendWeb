@@ -24,20 +24,6 @@
               <label for="username">Username</label>
             </span>
             <span class="p-float-label p-input-icon-left w-100">
-              <i class="pi pi-user"></i>
-              <pv-input-text
-                  type="email"
-                  id="email"
-                  v-model="email"
-                  class="w-100"
-                  :class="{ 'is-invalid': errors.email && email === '' }"
-              />
-              <div class="error-message" v-if="errors.email && email === ''">
-                {{ errors.email }}
-              </div>
-              <label for="email">Email</label>
-            </span>
-            <span class="p-float-label p-input-icon-left w-100">
               <i class="pi pi-key"></i>
               <pv-input-text
                   type="password"
@@ -105,11 +91,9 @@ export default {
   data() {
     return {
       username: null,
-      email: null,
       password: null,
       errors: {
         username: "Username is required.",
-        email: "Email is required.",
         password: "Password is required.",
       },
       message: "",
@@ -122,16 +106,16 @@ export default {
   },
   methods: {
     handleLogin() {
-      if (this.username === "" || this.email === "" || this.password === "" ||
-        this.username === null || this.email === null || this.password === null) {
+      if (this.username === "" || this.password === "" ||
+        this.username === null || this.password === null) {
         // Show a general error message if any field is empty
         this.message = "Please fill in all fields.";
         return;
       }
-      console.log(this.username + this.email + this.password)
+      console.log(this.username + this.password)
       // Your login logic here
       this.$store
-          .dispatch("auth/login", { username: this.username, email: this.email, password: this.password })
+          .dispatch("auth/login", { username: this.username, email: "string", password: this.password })
           .then(
               () => {
                 if (this.$store.state.auth.user.rol !== undefined) this.$router.push("/merchant-home");
