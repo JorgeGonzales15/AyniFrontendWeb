@@ -27,6 +27,7 @@ export default {
   },
   mounted() {
     this.orderApi.getAll().then((response) => {
+      console.log(response.data);
       this.orders = response.data;
     });
   },

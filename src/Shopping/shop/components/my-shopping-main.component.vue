@@ -6,15 +6,15 @@
         <div class="col-12 my-shopping-container">
           <div class="my-shopping-order-container">
             <div class="product-image">
-              <p class="dates-label">Date: {{ slotProps.data.ordered_date }}</p>
+              <p class="dates-label">Date: {{ slotProps.data.orderedDate }}</p>
               <img :src="`${slotProps.data.image_url}`" width="300" height="200">
-              <p><pv-button :label="slotProps.data.product.name" severity="success" raise class="rates-button"/></p>
+              <p><pv-button :label="slotProps.data.user.username" severity="success" raise class="rates-button"/></p>
             </div>
             <div class="">
               <p>Quantity: {{ slotProps.data.quantity }}</p>
-              <p>Producer: {{ slotProps.data.username }}</p>
-              <p>Price: {{ slotProps.data.product.unit_price }}</p>
-              <p>State: {{ slotProps.data.ordered_state }}</p>
+              <p>Producer: {{ slotProps.data.user.username }}</p>
+              <p>Total Price: {{ slotProps.data.totalPrice }}</p>
+              <p>State: {{ slotProps.data.status }}</p>
               <span class="">
               <pv-dialog v-model:visible="visible" modal class="">
                 <p class="dialog-text">Thanks for rate</p>
@@ -24,7 +24,7 @@
           </div>
           <div class="my-shopping-productor-container">
             <div class="productor-image">
-              <p>Producer: {{ slotProps.data.username }}</p>
+              <p class="font-bold">Producer: {{ slotProps.data.user.username }}</p>
               <img :src="`${slotProps.data.image_url}`" width="300" height="200">
             </div>
             <div class="productor-image">
@@ -65,7 +65,7 @@ export default {
       this.$emit('orderStateEvent', selectedItem);
     },
     findOrderState(item) {
-      if (item.ordered_state === 'Packaging' || item.ordered_state === 'On the way'){
+      if (item.status === 'Packaging' || item.status === 'On the way'){
         return true;
       }
       return false;

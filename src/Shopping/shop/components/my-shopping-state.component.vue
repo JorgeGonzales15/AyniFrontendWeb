@@ -4,20 +4,19 @@
     <div class="col-12 my-shopping-container">
       <div class="my-shopping-order-container">
         <div class="product-image">
-          <p class="dates-label">Date: {{ order.ordered_date }}</p>
+          <p class="dates-label">Date: {{ order.orderedDate }}</p>
           <img :src="`${order.image_url}`" width="300" height="200">
-          <p><pv-button :label="order.product.name" severity="secondary" raise class="rates-button"/></p>
+          <p><pv-button :label="order.user.username" severity="secondary" raise class="rates-button"/></p>
         </div>
         <div class="">
-          <p>Quantity: {{ order.quantity }}</p>
-          <p>Producer: {{ order.username }}</p>
-          <p>Price: {{ order.unit_price }}</p>
-          <p>State: {{ order.ordered_state }}</p>
+          <p>Producer: {{ order.user.username }}</p>
+          <p>Price: {{ order.totalPrice }}</p>
+          <p>State: {{ order.status }}</p>
         </div>
       </div>
       <div class="my-shopping-productor-container">
         <div class="productor-image">
-          <p>Producer: {{ order.username }}</p>
+          <p>Producer: {{ order.user.username }}</p>
           <img :src="`${order.image_url}`" width="300" height="200">
         </div>
         <div class="productor-image">
@@ -49,6 +48,8 @@
       <div class="text-container">
         <template v-if="state === 1">
           <h3>Packaging</h3>
+          <p><span class="font-bold">Information: </span>Su pedido esta siendo empaquetado en nuestra sucursal</p>
+          <p><span class="font-bold">Description: </span>{{ order.description }}</p>
         </template>
         <template v-else-if="state === 2">
           <h3>On the way</h3>
