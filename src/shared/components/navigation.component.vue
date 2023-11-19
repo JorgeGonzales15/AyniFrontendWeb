@@ -52,7 +52,7 @@ export default {
       ],
       routesFarmer: [
         { label: "Home", to: "/farmer-home" },
-        { label: "My Plants", to: "/product"},
+        { label: "My Crops", to: "/crops"},
         { label: "Financial Management", to: "/select-transaction"},
         { label: "My Orders", to: "/my-orders"}
       ],
