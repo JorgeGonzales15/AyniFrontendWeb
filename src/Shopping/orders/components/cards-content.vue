@@ -12,24 +12,26 @@
             <img src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=ejx13G9ZroRrcg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fuser-png-icon-young-user-icon-2400.png&ehk=NNF6zZUBr0n5i%2fx0Bh3AMRDRDrzslPXB0ANabkkPyv0%3d&risl=&pid=ImgRaw&r=0"
                  class="centered-image" width="200" height="200"/>
           </template>
-          
-          <template #title> {{order.user.username}}</template>
-          <template #subtitle> Requested product: {{order.user.username}} </template>
+
+          <template #title> {{order.user.role}}</template>
+          <template #subtitle> Requested product: {{order.product.name}} </template>
           <template #content>
 
             Date: {{order.orderedDate}}
             <p></p>
 
-              Description: {{order.description}}
-              <p></p>
-              Price: {{order.totalPrice}}
-              <p></p>
-              Payment Method: {{order.paymentMethod}}
+            Description: {{order.description}}
+            <p></p>
+            Status: {{order.status}}
+            <p></p>
+            Price: {{order.totalPrice}}
+            <p></p>
+            Payment Method: {{order.paymentMethod}}
 
           </template>
           <template #footer>
-            <pv-button icon="pi pi-check" label="Accept" />
-            <pv-button icon="pi pi-times" label="Decline" severity="secondary" style="margin-left: 0.5em" />
+            <pv-button @click="acceptOrder(order)" icon="pi pi-check" label="Accept" />
+            <pv-button @click="declineOrder(order)" icon="pi pi-times" label="Decline" severity="secondary" style="margin-left: 0.5em" />
           </template>
 
         </pv-card>
@@ -44,21 +46,17 @@
 </template>
 
 <script>
-
-import {UserOrdersApiService} from "@/Shopping/orders/services/UserOrders-api.service";
+import {OrdersService} from "@/Shopping/orders/services/orders.service";
 
 export default {
   name: "my-orders",
-
-
-  data(){
-    return{
+  data() {
+    return {
       orders: [],
-      ordersService: new UserOrdersApiService(),
       columns: null,
       first: 0,
       totalRecords: 0
-    }
+    };
   },
   computed: {
     paginatedOrders() {
@@ -70,11 +68,49 @@ export default {
       return this.$store.state.auth.user;
     }
   },
-  mounted() {
-    this.ordersService.getAllOrders(this.currentUser.id).then((response) => {
-      this.orders = response.data.slice(0, 6);
-      this.totalRecords = response.data.length; // Calcula el total de registros
-    });
+  async mounted() {
+    try {
+      const ordersService = new OrdersService();
+      const response = await ordersService.getAll();
+      console.log(response.data);
+      this.orders = response.data.filter((a) => a.user.id === 8 /*this.currentUser.id*/ && a.status === "pending" /*this.currentUser.id*/);
+      this.totalRecords = this.orders.length;
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  },
+  methods:{
+    async acceptOrder(order) {
+      try {
+        const updatedOrder ={
+          description: order.description,
+          status: "on the way",
+          orderedDate: order.orderedDate,
+          totalPrice: order.totalPrice,
+          paymentMethod: order.paymentMethod,
+          productId: order.product.id,
+          userId: order.user.id
+        }
+        const ordersService = new OrdersService();
+        await ordersService.update(order.id, updatedOrder);
+
+        this.orders = this.orders.filter((o) => o.id !== order.id);
+        console.log("Order accepted:", order);
+
+      } catch (error) {
+        console.error("Error accepting order:", error);
+      }
+    },
+    async declineOrder(order) {
+      try {
+        const ordersService = new OrdersService();
+        await ordersService.delete(order.id);
+        this.orders = this.orders.filter((o) => o.id !== order.id);
+        console.log("Order declined:", order);
+      } catch (error) {
+        console.error("Error declining order:", error);
+      }
+    }
   }
 };
 </script>

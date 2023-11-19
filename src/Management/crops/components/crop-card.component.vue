@@ -1,50 +1,52 @@
 <template>
-  <div class="product-card">
-    <img class="product-image" src="https://th.bing.com/th/id/OIP.BLM0pFxm4dnZFahpArbaAQHaE9?pid=ImgDet&rs=1" alt="product image_url"/>
-    <h2 class="product-name">{{ product.name }}</h2>
-  </div>
+  <router-link :to="{ name: 'crop-details', params: { id: crop.id } }">
+    <div class="crop-card">
+      <img class="crop-image" :src="crop.imageUrl" alt="crop image_url" />
+      <h2 class="crop-name">{{ crop.name }}</h2>
+    </div>
+  </router-link>
 </template>
-
 
 <script>
 export default {
   props: {
-    product: {
+    crop: {
       type: Object,
       required: true,
     },
   },
 };
 </script>
+
 <style scoped>
-.product-card {
+.crop-card {
   background-color: rgba(35, 32, 32, 0.55);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   padding: 20px;
   overflow: hidden;
-  max-width: 250px;
+  max-width: 300px;
   text-align: center;
 
   @media (max-width: 767px) {
     align-self: center;
-    max-width: 80%;
+    max-width: 100%;
   }
 }
 
-.product-card:hover {
+.crop-card:hover {
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.product-image {
+.crop-image {
   width: 100%;
   height: 110px;
   object-fit: cover;
   margin-bottom: 10px;
 }
 
-.product-name {
+.crop-name {
   font-size: 16px;
   margin: 0 auto;
   padding: 5px 0;

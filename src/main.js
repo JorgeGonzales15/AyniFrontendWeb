@@ -38,6 +38,7 @@ import DataView from "primevue/dataview";
 import store from "@/store/store";
 import Rating from "primevue/rating";
 import Paginator from "primevue/paginator";
+import Message from "primevue/message";
 
 const app = createApp(App)
 
@@ -55,13 +56,13 @@ app
     .component('pv-input-text', InputText)
     .component("pv-inputnumber", InputNumber)
     .component("pv-dropdown", Dropdown)
+    .component("pv-message", Message)
     .component("pv-calendar", Calendar)
     .component("pv-checkbox", Checkbox)
     .component('pv-data-table', DataTable)
     .component("pv-column", Column)
     .component('pv-toolbar', Toolbar)
     .component('pv-textarea', Textarea)
-    .component('pv-button', Button)
     .component('pv-row', Row)
     .component('pv-sidebar', Sidebar)
     .component('pv-menu', Menu)
