@@ -10,7 +10,8 @@ export class AuthService {
         return http.post('/sign-in', {
             username: user.username,
             email: user.email,
-            password: user.password
+            password: user.password,
+            role: user.role
         }).then(response => {
             if (response.data.token) {
                 localStorage.setItem('user', JSON.stringify(response.data));
@@ -27,7 +28,8 @@ export class AuthService {
         return http.post('/sign-up', {
             username: user.username,
             email: user.email,
-            password: user.password
+            password: user.password,
+            role: user.role
         });
     }
 }

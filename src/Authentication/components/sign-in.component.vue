@@ -115,10 +115,13 @@ export default {
       console.log(this.username + this.password)
       // Your login logic here
       this.$store
-          .dispatch("auth/login", { username: this.username, email: "string", password: this.password })
+          .dispatch("auth/login", { username: this.username,
+            email: "string",
+            role: "string",
+            password: this.password })
           .then(
               () => {
-                if (this.$store.state.auth.user.rol !== undefined) this.$router.push("/merchant-home");
+                if (this.$store.state.auth.user.rol !== 'ROLE_MERCHANT') this.$router.push("/merchant-home");
                 else this.$router.push("/farmer-home");
               },
               (error) => {

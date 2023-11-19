@@ -68,14 +68,21 @@
 <script>
 export default {
   name: "select-rol",
+  computed: {
+    savedUser() {
+      return this.$store.state.data.user;
+    },
+  },
   methods: {
     onMerchantSelected() {
-      this.$store.dispatch('auth/updateRol', 'merchant');
-      this.$router.push("/merchant-home");
+      this.$store.dispatch('data/updateUserRol', 'ROLE_MERCHANT');
+      this.$store.dispatch('auth/register', this.savedUser);
+      this.$router.push("/signin");
     },
     onFarmerSelected() {
-      this.$store.dispatch('auth/updateRol', 'farmer');
-      this.$router.push("/farmer-home");
+      this.$store.dispatch('data/updateUserRol', 'ROLE_FARMER');
+      this.$store.dispatch('auth/register', this.savedUser);
+      this.$router.push("/signin");
     }
   }
 }

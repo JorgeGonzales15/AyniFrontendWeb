@@ -117,20 +117,8 @@ export default {
       console.log(this.username + this.email + this.password)
       // Your login logic here
       this.$store
-          .dispatch("auth/register", { username: this.username, email: this.email, password: this.password })
-          .then(
-              () => {
-                this.message = "Register successfully return to Sign In"
-              },
-              (error) => {
-                this.message =
-                    (error.response &&
-                        error.response.data &&
-                        error.response.data.message) ||
-                    error.message ||
-                    error.toString();
-              }
-          );
+          .dispatch("data/saveUser", { username: this.username, email: this.email, password: this.password });
+      this.$router.push('select-rol');
     },
     async showMessage(message){
       this.message = message;
