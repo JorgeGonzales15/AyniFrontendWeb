@@ -112,7 +112,9 @@ export default {
         this.message = "Please fill in all fields.";
         return;
       }
-      console.log(this.username + this.password)
+      console.log(this.username + this.password);
+      console.log(this.$store.state.auth.user);
+      console.log(this.$store.state.auth.user.role);
       // Your login logic here
       this.$store
           .dispatch("auth/login", { username: this.username,
@@ -121,7 +123,8 @@ export default {
             password: this.password })
           .then(
               () => {
-                if (this.$store.state.auth.user.rol === 'ROLE_MERCHANT') this.$router.push("/merchant-home");
+
+                if (this.$store.state.auth.user.role === 'ROLE_MERCHANT') this.$router.push("/merchant-home");
                 else this.$router.push("/farmer-home");
               },
               (error) => {

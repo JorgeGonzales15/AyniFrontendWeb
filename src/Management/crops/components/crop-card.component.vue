@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'crop-details', params: { id: crop.id } }">
+  <router-link style="text-decoration: none; color: inherit;" :to="{ name: 'crop-details', params: { id: crop.id } }">
     <div class="crop-card">
       <img class="crop-image" :src="crop.imageUrl" alt="crop image_url" />
       <h2 class="crop-name">{{ crop.name }}</h2>
@@ -47,11 +47,12 @@ export default {
 }
 
 .crop-name {
-  font-size: 16px;
+  font-size: 18px;
   margin: 0 auto;
   padding: 5px 0;
   width: 100%;
   color: white;
   background-color: #3EAF2C;
+  text-decoration: none !important;
 }
 </style>

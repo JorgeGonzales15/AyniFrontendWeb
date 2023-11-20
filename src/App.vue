@@ -20,6 +20,7 @@ export default {
 
 <style>
 html, body{
+  font-family: 'Archive', sans-serif;
   background: rgb(208,243,203);
   background: linear-gradient(0deg, rgba(208,243,203,1) 0%, rgba(42,175,135,1) 100%);
 }

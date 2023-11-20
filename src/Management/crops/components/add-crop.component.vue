@@ -1,7 +1,7 @@
 <template>
   <div class="container flex flex-column align-items-center  gap-3 text-white p-4">
 
-    <div class="form-container bg-black-alpha-50 p-3  border-round-xl shadow-6">
+    <div class="form-container bg-black-alpha-50 p-4  border-round-xl shadow-6">
       <h2 class="text-center mb-4">Enter data for the new crop</h2>
       <form class="form flex flex-wrap text-sm align-items-center justify-content-around gap-4" @submit.prevent="addPlant">
 
@@ -41,14 +41,18 @@
         </div>
 
       </form>
-      <p v-if="showMessage" class="message text-center mt-5">
-        {{
-          messageType === 'success' ? 'The product has been successfully added.' : (messageType === 'duplicate') ? 'The product already exists in the list.' : 'Data is incomplete'
-        }}
-      </p>
     </div>
-    <pv-button class="button p-mr-2 hover:bg-green-700 border-none" type="submit" @click="addPlant">Add Crop</pv-button>
-
+    <p v-if="showMessage" class="message text-center font-bold text-1xl text-red-500 mt-2">
+      {{
+        messageType === 'success' ? 'The product has been successfully added.' : (messageType === 'duplicate') ? 'The product already exists in the list.' : 'Data is incomplete'
+      }}
+    </p>
+    <div class="flex gap-3">
+    <pv-button class="button  hover:bg-green-700 border-none" type="submit" @click="addPlant">Add Crop</pv-button>
+      <router-link to="/crops">
+    <pv-button class="button hover:bg-green-700 border-none" >Return</pv-button>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -59,7 +63,9 @@ import {mapGetters} from "vuex";
 export default {
   name: "AddCropComponent", // Cambiado el nombre del componente
   computed: {
-    ...mapGetters('auth', ['getUserId']),
+    savedUser() {
+      return this.$store.state.data.user;
+    },
   },
   data() {
     return {
@@ -80,6 +86,9 @@ export default {
   },
   methods: {
     async addPlant() {
+
+      this.newPlant.userId = this.savedUser.id;
+
       if (this.isFormIncomplete()) {
         this.messageType = "incomplete";
         this.showMessage = true;
@@ -87,8 +96,8 @@ export default {
       }
 
       const cropsApiService = new CropsApiService();
-      const verify = await cropsApiService.findByTitle(this.newPlant.name);
-      const isDuplicate = Array.isArray(verify.data) && verify.data.length > 0;
+      const response = await cropsApiService.getAll();
+      const isDuplicate = response.data.some(crop => crop.name.toLowerCase() === this.newPlant.name.toLowerCase())
 
       if (isDuplicate) {
         this.messageType = "duplicate";
@@ -105,7 +114,7 @@ export default {
         groundType: this.newPlant.groundType,
         season: this.newPlant.season,
         imageUrl: this.newPlant.imageUrl,
-        userId: 1,/*this.getUserId,*/
+        userId: this.savedUser.id,
       };
 
       cropsApiService.create(JSON.stringify(apiData)).then((response) => {
@@ -150,10 +159,17 @@ export default {
 .form-container {
   font-family: 'Archive', sans-serif;
   width: 60%;
+  height: 580px;
+  overflow-y:auto;
+
+}
+.message {
+  font-family: 'Archive', sans-serif;
 }
 
 label{
   font-weight: bold;
+  font-size: 18px;
 }
 
 .form-text{
@@ -172,13 +188,12 @@ label{
   border: none;
   border-bottom: 1px solid white;
   outline: none;
+  font-size: 16px;
 }
 .input::placeholder {
   color: white;
 }
-.message {
-  color: rgba(59, 251, 3, 0.98);
-}
+
 .button {
   background-color: rgb(37, 183, 19);
 }

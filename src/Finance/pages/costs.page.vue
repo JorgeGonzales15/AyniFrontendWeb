@@ -1,6 +1,6 @@
 <template>
-  <div class="container bg-black-alpha-10">
-    <h1 class="center">Costs</h1>
+  <div class="container bg-black-alpha-10 p-4">
+    <h1 class="center text-white">Costs</h1>
 
     <div class="profit-grid pt-5 pb-5">
       <div v-for="cost in displayedCosts">
@@ -12,6 +12,8 @@
         </div>
       </div>
     </div>
+    <div class="container pt-2 flex justify-content-between">
+      <pv-button label="Return" @click="onReturn" severity="success"/>
     <pv-paginator class="paginator"
                   @page="onPageChange"
                   :rows="pageSize"
@@ -23,11 +25,10 @@
       })
         }"
     ></pv-paginator>
+      <pv-button label="Add Cost" @click="onAddCost" severity="success"/>
+    </div>
   </div>
-  <div class="container pt-2 flex justify-content-between">
-    <pv-button label="Return" @click="onReturn" severity="success"/>
-    <pv-button label="Add Cost" @click="onAddCost" severity="success"/>
-  </div>
+
 </template>
 
 <script>
@@ -75,15 +76,20 @@ export default {
 </script>
 
 <style>
+
+
 .profit-grid{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  grid-gap: 70px;
+  grid-gap: 40px;
+  padding:10px;
 }
 .profit-card{
-  background-color: white;
+  background-color: rgba(35, 32, 32, 0.55);
+  color: white;
   padding: 10px;
+  min-height: 220px;
   border-radius: 20px;
 }
 

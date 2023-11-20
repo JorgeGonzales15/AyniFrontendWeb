@@ -47,7 +47,7 @@ export default {
     return {
       rol: null,
       items: [
-        { label: 'farmer', icon: 'pi pi-user' },
+        { label: this.$store.state.auth.user.role, icon: 'pi pi-user' },
         { label: 'Logout', icon: 'pi pi-fw pi-power-off', command: () => { this.logOut(); } }
       ],
       routesFarmer: [

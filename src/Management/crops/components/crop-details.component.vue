@@ -1,5 +1,5 @@
 <template>
-  <div class="crop-details-container flex flex-column gap-4 align-items-center bg-black-alpha-50 p-4 border-round-xl shadow-6 mt-3" v-if="crop">
+  <div class="crop-details-container flex flex-column gap-4 align-items-center bg-black-alpha-50 p-4 border-round-xl shadow-6 mt-6" v-if="crop">
     <h1 class="text-center text-white">{{ crop.name }}</h1>
 
     <div class="crop-details flex flex-wrap justify-content-center gap-4">
@@ -15,8 +15,13 @@
       </div>
     </div>
 
+    <div class="flex flex-wrap gap-4">
     <pv-button class="sell-button p-button-success px-4 py-2 max-w-10rem" v-if="!productSold" @click="openSellDialog" label="Sell product" icon="pi pi-external-link" />
     <pv-button class="sell-button p-button-success px-4 py-2 max-w-10rem" v-if="productSold" label="Product Sold" icon="pi pi-check" />
+    <router-link to="/crops">
+      <pv-button class="button p-button-success hover:bg-green-700 border-none" >Return</pv-button>
+    </router-link>
+    </div>
 
     <!-- PrimeVue Dialog for selling crop -->
     <pv-dialog v-model:visible="visible" @onHide="resetForm()" modal header="Sell Product" :style="{ width: '50rem' }" :breakpoints="{ '1199px': '75vw', '575px': '90vw' }">
@@ -111,13 +116,13 @@ export default {
 
         const productsService = new ProductsApiService();
         const allProducts = await productsService.getAllProducts();
-        await productsService.createProduct(productData);
 
         const existingProduct = allProducts.data.find(product => product.name === this.name && !product.sold);
         if (existingProduct) {
           this.productNameExists = true;
           return;
         }
+        await productsService.createProduct(productData);
         this.productSold = true;
         this.resetForm();
         this.productNameExists = false;
@@ -138,7 +143,7 @@ export default {
 }
 /* Estilos para el componente de detalles del crop */
 .crop-details-container {
-  max-width: 50%;
+  max-width: 60%;
   border-radius: 10px;
   margin: auto;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

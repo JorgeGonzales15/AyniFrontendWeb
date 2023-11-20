@@ -1,48 +1,36 @@
 <template>
-  <div class="grid-container container">
+  <div class="order-container flex flex-column align-items-center gap-3 text-white p-3">
+    <h1 class="order-title">My Crops</h1>
 
-    <div class="itemCarousel">
-
-      <h2 class="center">My Orders:</h2>
-      <div class="carousel-display">
-
-        <pv-card v-for="order in paginatedOrders" class="farmer-home-card">
-
-          <template #header>
-            <img src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=ejx13G9ZroRrcg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fuser-png-icon-young-user-icon-2400.png&ehk=NNF6zZUBr0n5i%2fx0Bh3AMRDRDrzslPXB0ANabkkPyv0%3d&risl=&pid=ImgRaw&r=0"
-                 class="centered-image" width="200" height="200"/>
-          </template>
-
-          <template #title> {{order.user.role}}</template>
-          <template #subtitle> Requested product: {{order.product.name}} </template>
-          <template #content>
-
-            Date: {{order.orderedDate}}
-            <p></p>
-
-            Description: {{order.description}}
-            <p></p>
-            Status: {{order.status}}
-            <p></p>
-            Price: {{order.totalPrice}}
-            <p></p>
-            Payment Method: {{order.paymentMethod}}
-
-          </template>
-          <template #footer>
-            <pv-button @click="acceptOrder(order)" icon="pi pi-check" label="Accept" />
-            <pv-button @click="declineOrder(order)" icon="pi pi-times" label="Decline" severity="secondary" style="margin-left: 0.5em" />
-          </template>
-
-        </pv-card>
-
+    <div class="order-grid" >
+      <div v-for="order in displayedCrops"  :key="order.id">
+       <div class="order-card ">
+          <img class="order-image" src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=ejx13G9ZroRrcg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fuser-png-icon-young-user-icon-2400.png&ehk=NNF6zZUBr0n5i%2fx0Bh3AMRDRDrzslPXB0ANabkkPyv0%3d&risl=&pid=ImgRaw&r=0" alt="order image_url" />
+          <h2 class="order-name">{{ order.user.username }}</h2>
+         <p>Date:  {{order.orderedDate}}</p>
+         <p>Description:  {{order.description}}</p>
+         <p>Status:  {{order.status}}</p>
+         <p>Price:  {{order.totalPrice}}</p>
+         <p>Payment Method:  {{order.paymentMethod}}</p>
+         <pv-button @click="acceptOrder(order)" icon="pi pi-check" label="Accept" />
+         <pv-button @click="declineOrder(order)" icon="pi pi-times" label="Decline" severity="secondary" style="margin-left: 0.5em" />
+        </div>
       </div>
     </div>
 
-  </div>
-  <p></p>
-  <pv-paginator v-model:first="first" :rows="3" :totalRecords="totalRecords"></pv-paginator>
+    <pv-paginator class="paginator mt-5"
+                  @page="onPageChange"
+                  :rows="pageSize"
+                  :totalRecords="totalRecords"
+                  :style="{background:'none', border: ''}"
+                  :pt="{
+        pageButton: ({ props, state, context }) => ({
+          class: context.active ? 'bg-primary hover:bg-blue-600' : 'bg-blue-100 hover:bg-blue-300'
+        })
+      }"
+    ></pv-paginator>
 
+  </div>
 </template>
 
 <script>
@@ -53,33 +41,22 @@ export default {
   data() {
     return {
       orders: [],
-      columns: null,
-      first: 0,
-      totalRecords: 0
+      currentPage: 1,
+      pageSize: 6,
+      totalRecords: 0,
     };
   },
   computed: {
-    paginatedOrders() {
-      const start = this.first;
-      const end = start + 3;
+    displayedCrops() {
+      const start = (this.currentPage - 1) * this.pageSize;
+      const end = this.pageSize + start;
       return this.orders.slice(start, end);
     },
-    currentUser() {
-      return this.$store.state.auth.user;
-    }
   },
-  async mounted() {
-    try {
-      const ordersService = new OrdersService();
-      const response = await ordersService.getAll();
-      console.log(response.data);
-      this.orders = response.data.filter((a) => a.user.id === 8 /*this.currentUser.id*/ && a.status === "pending" /*this.currentUser.id*/);
-      this.totalRecords = this.orders.length;
-    } catch (error) {
-      console.error("Error fetching orders:", error);
-    }
-  },
-  methods:{
+  methods: {
+    onPageChange(event) {
+      this.currentPage = event.page + 1;
+    },
     async acceptOrder(order) {
       try {
         const updatedOrder ={
@@ -111,57 +88,69 @@ export default {
         console.error("Error declining order:", error);
       }
     }
-  }
+  },
+  async mounted() {
+    try {
+      const ordersService = new OrdersService();
+      const response = await ordersService.getAll();
+      console.log(response.data);
+      this.orders = response.data.filter((a) => a.user.id === 1 /*this.currentUser.id*/ && a.status === "on pending");
+      this.totalRecords = this.orders.length;
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  },
 };
 </script>
 
-<style>
-.container{
-  max-width: 1400px;
-  margin: 0 auto;
+<style scoped>
+.order-container{
+  font-family: 'Archive', sans-serif;
 }
-.grid-container{
+
+.order-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: repeat(2, auto);
-  gap: 10px;
-  grid-row-gap: 5rem;
-  grid-template-areas:
-    "seccion1 seccion2 seccion3"
-    "seccion4 seccion4 seccion4";
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: repeat(1, minmax(200px, 1fr));
+  grid-gap: 40px;
+  max-width: 60%;
 }
 
-.centered-image {
-  display: block;
-  margin: auto;
-  max-width: 100%;
-  max-height: 100%;
-}
-.itemCarousel {
-  grid-area: seccion4;
-}
-.carousel-display{
-  display: flex;
-  gap: 20px;
-}
-.farmer-home-card{
-  min-width: 30%;
-}
-@media (max-width: 1024px) {
-  .carousel-display{
-    flex-direction: column;
-  }
-}
-@media (max-width: 768px) {
-  .grid-container{
-    display: flex;
-    flex-direction: column;
-  }
+ .order-card {
+   background-color: rgba(35, 32, 32, 0.55);
+   border-radius: 10px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   cursor: pointer;
+   padding: 20px;
+   overflow: hidden;
+   max-width: 300px;
+   text-align: center;
 
-  .itemCarousel{
-    order: 3;
-  }
+   @media (max-width: 767px) {
+     align-self: center;
+     max-width: 100%;
+   }
+ }
 
-
+.order-card:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
+
+.order-image {
+  width: 100%;
+  height: 110px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.order-name {
+  font-size: 18px;
+  margin: 0 auto;
+  padding: 5px 0;
+  width: 100%;
+  color: white;
+  background-color: #3EAF2C;
+  text-decoration: none !important;
+}
+
 </style>

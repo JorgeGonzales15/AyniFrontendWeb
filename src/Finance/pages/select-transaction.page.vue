@@ -1,8 +1,8 @@
 <template>
-  <div class="flex justify-content-center gap-4">
+  <div class="container flex justify-content-center gap-4">
     <div class="w-45 bg-black-alpha-10">
-      <h2 class="center pt-5 pb-5">Costs</h2>
-      <pv-data-table :value="costs" striped-rows >
+      <h2 class="center pt-5 pb-5 text-white">Costs</h2>
+      <pv-data-table :value="costs" striped-rows class="overflow-y-auto h-30rem">
         <pv-column field="name" header="Name"/>
         <pv-column field="description" header="Description"/>
         <pv-column field="amount" header="Amount"/>
@@ -11,10 +11,10 @@
         <pv-button severity="success" label="See More" @click="onCostsSelected"/>
       </div>
     </div>
-    <div class="w-45 bg-black-alpha-10">
+    <div class="w-45 bg-black-alpha-10 text-white">
       <h2 class="center pb-5 pt-5">Profits</h2>
       <div class="center pr-6 pl-6">
-        <pv-data-table :value="profits" striped-rows table-style="">
+        <pv-data-table :value="profits" striped-rows class="overflow-y-auto h-30rem">
           <pv-column field="nameP" header="Name"/>
           <pv-column field="descriptionP" header="Description"/>
           <pv-column field="amountP" header="Amount"/>
