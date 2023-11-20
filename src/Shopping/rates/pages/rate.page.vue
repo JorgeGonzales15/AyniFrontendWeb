@@ -5,9 +5,9 @@
       <template #list="slotProps">
         <div class="col-12 rates-container">
           <div class="rates-image">
-            <img :src="`${slotProps.data.imageUrl}`" width="300" height="200">
+            <img :src="`${slotProps.data.product.imageUrl}`" width="300" height="200">
             <p>
-              <pv-button :label="slotProps.data.user.username" severity="secondary" raise class="rates-button"/>
+              <pv-button :label="slotProps.data.product.name" severity="secondary" raise class="rates-button"/>
             </p>
           </div>
           <div class="rates-properties">
@@ -17,7 +17,7 @@
             </p>
             <p>
               Quantity:
-              {{ slotProps.data.quantity }}
+              {{ slotProps.data.product.quantity }}
             </p>
             <p>
               Producer:

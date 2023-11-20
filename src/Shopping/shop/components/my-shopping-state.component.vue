@@ -5,19 +5,20 @@
       <div class="my-shopping-order-container">
         <div class="product-image">
           <p class="dates-label">Date: {{ order.orderedDate }}</p>
-          <img :src="`${order.image_url}`" width="300" height="200">
-          <p><pv-button :label="order.user.username" severity="secondary" raise class="rates-button"/></p>
+          <img :src="`${order.product.imageUrl}`" width="300" height="200">
+          <p><pv-button :label="order.product.name" severity="secondary" raise class="rates-button"/></p>
         </div>
         <div class="">
-          <p>Producer: {{ order.user.username }}</p>
+          <p>Product: {{ order.product.name }}</p>
           <p>Price: {{ order.totalPrice }}</p>
           <p>State: {{ order.status }}</p>
         </div>
       </div>
       <div class="my-shopping-productor-container">
         <div class="productor-image">
-          <p>Producer: {{ order.user.username }}</p>
-          <img :src="`${order.image_url}`" width="300" height="200">
+          <p>{{ order.user.username }}</p>
+          <img src="https://th.bing.com/th/id/R.6b0022312d41080436c52da571d5c697?rik=ejx13G9ZroRrcg&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fuser-png-icon-young-user-icon-2400.png&ehk=NNF6zZUBr0n5i%2fx0Bh3AMRDRDrzslPXB0ANabkkPyv0%3d&risl=&pid=ImgRaw&r=0"
+               class="centered-image" width="200" height="200"/>
         </div>
         <div class="productor-image">
           <p><pv-button label="See cultivation plan" severity="primary" raise class="rates-button"/></p>
