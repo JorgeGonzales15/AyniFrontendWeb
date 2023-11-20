@@ -114,7 +114,6 @@ export default {
       }
       console.log(this.username + this.password);
       console.log(this.$store.state.auth.user);
-      console.log(this.$store.state.auth.user.role);
       // Your login logic here
       this.$store
           .dispatch("auth/login", { username: this.username,
