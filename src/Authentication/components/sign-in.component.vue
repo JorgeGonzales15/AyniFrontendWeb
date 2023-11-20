@@ -121,7 +121,7 @@ export default {
             password: this.password })
           .then(
               () => {
-                if (this.$store.state.auth.user.rol !== 'ROLE_MERCHANT') this.$router.push("/merchant-home");
+                if (this.$store.state.auth.user.rol === 'ROLE_MERCHANT') this.$router.push("/merchant-home");
                 else this.$router.push("/farmer-home");
               },
               (error) => {

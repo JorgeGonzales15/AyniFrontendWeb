@@ -24,7 +24,7 @@
         <pv-card v-for="product in products" class="farmer-home-card">
           <template #header>
             <img
-                src="https://th.bing.com/th/id/OIP.BLM0pFxm4dnZFahpArbaAQHaE9?pid=ImgDet&rs=1"
+                :src="product.imageUrl"
                 width="350" height="150" class="w-100">
           </template>
           <template #content>

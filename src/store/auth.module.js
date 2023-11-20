@@ -37,9 +37,6 @@ export const auth = {
                     return Promise.reject(error);
                 }
             );
-        },
-        updateRol({ commit }, rol) {
-            commit('updateRol', rol);
         }
     },
     mutations: {
@@ -60,14 +57,11 @@ export const auth = {
         },
         registerFailure(state) {
             state.status.loggedIn = false;
-        },
-        updateRol(state, rol){
-            state.user.rol = rol;
-        },
+        }
     },
     getters: {
         getUserRol(state){
-            return state.user.rol;
+            return state.user.role;
         }
     }
 };

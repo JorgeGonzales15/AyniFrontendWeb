@@ -10,6 +10,9 @@ export const data = {
         saveUser({ commit }, user ){
             commit('saveUser', user);
         },
+        saveProduct({commit}, product) {
+            commit('saveProduct', product);
+        },
         updateUserRol({ commit }, rol){
             commit('updateUserRol', rol);
         }
@@ -17,6 +20,9 @@ export const data = {
     mutations: {
         saveUser(state, user) {
             state.user = user;
+        },
+        saveProduct(state, product) {
+            state.product = product;
         },
         updateUserRol(state, rol) {
             state.user.role = rol;
