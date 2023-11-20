@@ -10,7 +10,7 @@
             <label for="username" class="font-bold">Nombre del propietario</label>
             <pv-input-text id="username" v-model="username"></pv-input-text>
           </div>
-          <div class="field m-2 md:w-full">
+          <div class="field m-2">
             <label for="cardnumber" class="font-bold">Numero de tarjeta</label>
             <pv-inputnumber id="cardnumber" v-model="cardnumber"></pv-inputnumber>
           </div>
@@ -71,6 +71,7 @@ export default {
           cardnumber: this.cardnumber,
           expiration: this.expiration,
           cvv: this.cvv,
+
         },
         pageIndex: 1,
       });

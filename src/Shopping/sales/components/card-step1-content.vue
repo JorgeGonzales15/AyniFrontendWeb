@@ -7,12 +7,12 @@
       <form @submit.prevent="handleSubmit(!v$.$invalid)">
         <div class="p-fluid">
           <div class="field m-2">
-            <label for="product" class="font-bold">Producto</label>
-            <pv-input-text id="product" v-model="product"></pv-input-text>
+            <label for="product" class="font-bold">Descripcion</label>
+            <pv-input-text id="product" v-model="description"></pv-input-text>
           </div>
-          <div class="field m-2 md:w-full">
+          <div class="field m-2 ">
              <label for="quantity" class="font-bold">Cantidad</label>
-             <pv-inputnumber id="quantity" v-model="quantity" :class="{}" mode="decimal" :min="1" :max="100"></pv-inputnumber>
+             <pv-inputnumber id="quantity" v-model="quantity" :class="{}" mode="decimal" :min="1" :max="1000"></pv-inputnumber>
           </div>
           <div class="field m-2">
             <label for="date" class="font-bold">Fecha</label>
@@ -40,7 +40,7 @@ export default {
   data() {
     return {
       submitted: false,
-      product: "",
+      description: "",
       quantity: 0,
       date: "",
       method: "",
@@ -48,7 +48,7 @@ export default {
   },
   validations() {
     return {
-      product: {
+      description: {
         required,
       },
       quantity: {
@@ -66,7 +66,7 @@ export default {
     nextPage() {
       this.$emit("next-page", {
         formData: {
-          product: this.product,
+          description: this.description,
           quantity: this.quantity,
           date: this.date,
           method: this.method,

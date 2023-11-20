@@ -5,6 +5,7 @@
   </find-product-main>
   <find-product-selected v-else
                          :product="product"
+                         :crops="crops"
                          @onCancel="handleBuyCanceled">
 
   </find-product-selected>
@@ -14,6 +15,7 @@
 import FindProductMain from "@/Shopping/shop/components/find-product-main.component.vue";
 import FindProductSelected from "@/Shopping/shop/components/find-product-selected.component.vue";
 import {ProductsApiService} from "@/Shopping/products/services/products-api.service";
+import {CropsApiService} from "@/Management/crops/services/crops-api.service";
 
 export default {
   name: "find-product",
@@ -22,12 +24,17 @@ export default {
     return {
       products: null,
       product: null,
-      productApi: new ProductsApiService()
+      crops: null,
+      productApi: new ProductsApiService(),
+      cropsApi: new CropsApiService(),
     }
   },
   mounted() {
     this.productApi.getAllProducts().then((response) => {
       this.products = response.data;
+    })
+    this.cropsApi.getAll().then((response) => {
+      this.crops = response.data;
     })
   },
   methods: {
