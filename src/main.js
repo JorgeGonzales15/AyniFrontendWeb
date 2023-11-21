@@ -33,14 +33,22 @@ import SplitButton from "primevue/splitbutton";
 import TabMenu from "primevue/tabmenu";
 import Fieldset from "primevue/fieldset";
 import Divider from "primevue/divider";
-import Carousel from "primevue/carousel";
+import Carousel from "primevue/carousel"
+import DataView from "primevue/dataview";
+import store from "@/store/store";
+import Rating from "primevue/rating";
+import Paginator from "primevue/paginator";
+import Message from "primevue/message";
 
 const app = createApp(App)
+
+// Install components globally
 
 app
     .use(router)
     .use(ToastService)
     .use(PrimeVue, { ripple: true })
+    .use(store)
     .component("pv-steps", Steps)
     .component("pv-card", Card)
     .component("pv-dialog", Dialog)
@@ -48,13 +56,13 @@ app
     .component('pv-input-text', InputText)
     .component("pv-inputnumber", InputNumber)
     .component("pv-dropdown", Dropdown)
+    .component("pv-message", Message)
     .component("pv-calendar", Calendar)
     .component("pv-checkbox", Checkbox)
     .component('pv-data-table', DataTable)
     .component("pv-column", Column)
     .component('pv-toolbar', Toolbar)
     .component('pv-textarea', Textarea)
-    .component('pv-button', Button)
     .component('pv-row', Row)
     .component('pv-sidebar', Sidebar)
     .component('pv-menu', Menu)
@@ -64,7 +72,10 @@ app
     .component('pv-tab-menu', TabMenu)
     .component('pv-split-button', SplitButton)
     .component('pv-avatar', Avatar)
+    .component('pv-paginator', Paginator)
     .component('pv-field-set', Fieldset)
     .component('pv-divider', Divider)
     .component('pv-carousel', Carousel)
+    .component('pv-data-view', DataView)
+    .component('pv-rating', Rating)
     .mount('#app')

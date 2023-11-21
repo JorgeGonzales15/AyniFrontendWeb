@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <Form @submit.prevent="onSubmit" class="login-container mt-8">
+  <div class="login-container">
+    <Form @submit.prevent="handleLogin" class="mt-8">
       <pv-card class="bg-transparent">
         <template #header>
           <div class="flex justify-content-center">
@@ -10,60 +10,71 @@
           </div>
         </template>
         <template #content>
-          <div class="flex flex-column align-items-center gap-1">
-            <span class="p-float-label p-input-icon-left">
+          <div class="flex flex-column align-items-center gap-4">
+            <span class="p-float-label p-input-icon-left w-100">
               <i class="pi pi-user"></i>
-              <pv-input-text id="email"
-                             v-model="email"
-                             class="w-25rem"
-                             :class="{'p-invalid': emailError}"
-                             aria-describedby="text-error"/>
-              <label for="email">Email</label>
+              <pv-input-text
+                  type="text"
+                  id="username"
+                  v-model="username"
+                  class="w-100"
+                  :class="{ 'is-invalid': errors.username && username === '' }"
+                  aria-describedby="username-help"
+              />
+              <label for="username">Username</label>
             </span>
-            <small class="p-error " id="text-error">{{ emailError || '&nbsp;' }}</small>
-            <span class="p-float-label p-input-icon-left">
+            <span class="p-float-label p-input-icon-left w-100">
               <i class="pi pi-key"></i>
-              <pv-input-text type="password"
-                             id="password"
-                             v-model="password"
-                             class="w-25rem"
-                             :class="{'p-invalid': passwordError}"
-                             aria-describedby="text-error"/>
+              <pv-input-text
+                  type="password"
+                  id="password"
+                  v-model="password"
+                  class="w-100"
+                  :class="{ 'is-invalid': errors.password && password === '' }"
+              />
+              <div class="error-message" v-if="errors.password && password === ''">
+                {{ errors.password }}
+              </div>
               <label for="password">Password</label>
             </span>
-            <small class="p-error " id="text-error">{{ passwordError || '&nbsp;' }}</small>
+
 
             <div class="login-buttons flex flex-column gap-1 mt-4">
               <div class="flex justify-content-center">
-                <pv-button type="submit"
-                           label="Log in"
-                           class="w-15rem"/>
+                <pv-button type="submit" label="Log in" class="w-15rem" />
               </div>
               <div class="flex justify-content-center">
                 <router-link to="/signup">
-                  <pv-button type="submit"
-                             label="Sign in"
-                             class="w-15rem"
-                             outlined/>
+                  <pv-button
+                      type="submit"
+                      label="Sign in"
+                      class="w-15rem"
+                      outlined
+                  />
                 </router-link>
               </div>
             </div>
           </div>
-
         </template>
         <template #footer>
           <div class="flex justify-content-center">
-            <pv-button type="submit"
-                       class="w-15rem flex justify-content-between"
-                       size="small"
-                       text>
+            <pv-button
+                type="submit"
+                class="w-15rem flex justify-content-between"
+                size="small"
+                text
+            >
               <span>Login using Google</span>
               <i class="pi pi-google" style="font-size: 2rem"></i>
             </pv-button>
           </div>
 
           <div class="flex justify-content-center">
-            <pv-button type="submit" class="w-15rem flex justify-content-between" size="small" text>
+            <pv-button
+                type="submit"
+                class="w-15rem flex justify-content-between"
+                size="small"
+                text>
               <span>Forgot your password?</span>
               <i class="pi pi-exclamation-circle" style="font-size: 2rem"></i>
             </pv-button>
@@ -71,59 +82,84 @@
         </template>
       </pv-card>
     </Form>
-    <Toast/>
   </div>
-
 </template>
 
 <script>
-import {useForm, useField} from 'vee-validate';
 export default {
   name: "sign-in",
-  setup() {
-    const {handleSubmit, resetForm} = useForm();
-
-    const {value: email, errorMessage: emailError} = useField('email', validateEmail);
-    const {value: password, errorMessage: passwordError} = useField('password', validatePassword);
-    // Vee Validate
-    function validateEmail(value){
-      if(!value){
-        return 'Email is required.';
-      }
-      return true;
-    }
-    function validatePassword(value){
-      if(!value){
-        return 'Password is required.';
-      }
-      return true;
-    }
-
-    const onSubmit = handleSubmit((values) => {
-
-    });
-
+  data() {
     return {
-      email,
-      emailError,
-      password,
-      passwordError,
-      onSubmit,
+      username: null,
+      password: null,
+      errors: {
+        username: "Username is required.",
+        password: "Password is required.",
+      },
+      message: "",
     };
-  }
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+    },
+  },
+  methods: {
+    handleLogin() {
+      if (this.username === "" || this.password === "" ||
+        this.username === null || this.password === null) {
+        // Show a general error message if any field is empty
+        this.message = "Please fill in all fields.";
+        return;
+      }
+      console.log(this.username + this.password);
+      console.log(this.$store.state.auth.user);
+      // Your login logic here
+      this.$store
+          .dispatch("auth/login", { username: this.username,
+            email: "string",
+            role: "string",
+            password: this.password })
+          .then(
+              () => {
+
+                if (this.$store.state.auth.user.role === 'ROLE_MERCHANT') this.$router.push("/merchant-home");
+                else this.$router.push("/farmer-home");
+              },
+              (error) => {
+                this.message =
+                    (error.response &&
+                        error.response.data &&
+                        error.response.data.message) ||
+                    error.message ||
+                    error.toString();
+              }
+          );
+    },
+  },
 };
 </script>
+
 <style>
 .login-image {
   width: 300px;
   height: 300px;
 }
 
-.login-container{
+.login-container {
   width: 500px;
   margin: 0 auto;
 }
-
-
+@media screen and (max-width: 762px) {
+  .login-container{
+    width: 100%;
+  }
+}
+.is-invalid {
+  border-color: #dc3545 !important;
+}
+.w-100{
+  width: 100%;
+}
 
 </style>

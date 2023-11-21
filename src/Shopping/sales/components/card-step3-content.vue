@@ -6,35 +6,35 @@
       </template>
       <template v-slot:content>
         <div class="field col-12">
-          <label for="product">Producto</label>
+          <label for="product">Producto: </label>
           <b>{{ formData.product ? formData.product : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="quantity">Cantidad</label>
+          <label for="quantity">Cantidad: </label>
           <b>{{ formData.quantity ? formData.quantity : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="date">Fecha de compra</label>
+          <label for="date">Fecha de compra: </label>
           <b>{{ formData.date ? formData.date : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="method">Metodo de pago</label>
+          <label for="method">Metodo de pago: </label>
           <b>{{ formData.method ? formData.method : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="username">Propietario</label>
+          <label for="username">Propietario: </label>
           <b>{{ formData.username ? formData.username : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="cardnumber">Numero de tarjeta</label>
+          <label for="cardnumber">Numero de tarjeta: </label>
           <b>{{ formData.cardnumber ? formData.cardnumber : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="expiration">Fecha de expiracion</label>
+          <label for="expiration">Fecha de expiracion: </label>
           <b>{{ formData.expiration ? formData.expiration : '-' }}</b>
         </div>
         <div class="field col-12">
-          <label for="cvv">CVV</label>
+          <label for="cvv">CVV: </label>
           <b>{{ formData.cvv && formData.cvv.length === 3 ? '**' + formData.cvv[2] : '-' }}</b>
         </div>
       </template>
@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import { SalesApiService } from "@/Shopping/sales/services/sales-api.service";
+import {OrderApiService} from "@/Shopping/shop/services/order-api.service";
 
 export default {
   name:"step-3",
@@ -62,15 +62,18 @@ export default {
     },
 
     complete() {
-      const salesApiService = new SalesApiService();
+      const orderApiService = new OrderApiService();
       const data = {
-        product: this.formData.product,
-        quantity: this.formData.quantity,
-        date: this.formData.date,
-        method: this.formData.method,
+        description: this.formData.description,
+        status: 'pending',
+        orderedDate: this.formData.date,
+        paymentMethod: this.formData.method,
+        productId: this.$store.state.data.product.id,
+        totalPrice: this.formData.quantity * this.$store.state.data.product.unitPrice,
+        userId: 1
       };
-
-      salesApiService
+      console.log(data);
+      orderApiService
           .create(data)
           .then((response) => {
             console.log(response.data);
@@ -78,6 +81,7 @@ export default {
           .catch((error) => {
             console.error("Error al crear el registro:", error);
           });
+      this.$router.push('/my-shopping');
     },
   },
 };

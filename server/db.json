@@ -44,36 +44,7 @@
       "id": 2
     }
   ],
-  "order_details": [
-    {
-      "quantity": 10,
-      "product": {
-        "name": "Manzanas Frescas",
-        "description": "Deliciosas manzanas frescas, cosechadas en nuestro huerto local. Perfectas para bocadillos saludables o repostería.",
-        "unit_price": 1.5,
-        "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
-      }
-    },
-    {
-      "quantity": 10,
-      "product": {
-        "name": "Zanahorias Organicas",
-        "description": "Miel dorada y natural de nuestras colmenas. Endulza tus bebidas y comidas de manera saludable.",
-        "unit_price": 1.5,
-        "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
-      }
-    },
-    {
-      "quantity": 10,
-      "product": {
-        "name": "Miel de Abeja Pura",
-        "description": "Zanahorias de calidad premium, cultivadas sin pesticidas. Ideales para ensaladas y guisos.",
-        "unit_price": 1.5,
-        "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
-      }
-    }
-  ],
-  "order_payment": [
+  "payments": [
     {
       "ordered_date": "2023-05-09",
       "order_detail": {
@@ -114,6 +85,85 @@
       }
     }
   ],
+  "orders": [
+    {
+      "ordered_date": "2020-05-09",
+      "ordered_state": "Packaging",
+      "quantity": 30,
+      "username": "MariaGraciax",
+      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg",
+      "product": {
+        "name": "Manzanas Frescas",
+        "description": "Deliciosas manzanas frescas, cosechadas en nuestro huerto local. Perfectas para bocadillos saludables o repostería.",
+        "unit_price": 1.5,
+        "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+      }
+    },
+    {
+      "ordered_date": "2020-05-09",
+      "ordered_state": "Devoted",
+      "quantity": 30,
+      "username": "MariaGracia",
+      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg",
+      "product": {
+        "name": "Zanahorias Organicas",
+        "description": "Miel dorada y natural de nuestras colmenas. Endulza tus bebidas y comidas de manera saludable.",
+        "unit_price": 1.5,
+        "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+      }
+    },
+    {
+      "ordered_date": "2020-05-09",
+      "ordered_state": "On the way",
+      "quantity": 30,
+      "username": "MariaGraci",
+      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg",
+      "product": {
+        "name": "Miel de Abeja Pura",
+        "description": "Zanahorias de calidad premium, cultivadas sin pesticidas. Ideales para ensaladas y guisos.",
+        "unit_price": 1.5,
+        "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+      }
+    },
+    {
+      "ordered_date": "2020-05-09",
+      "ordered_state": "Packaging",
+      "quantity": 30,
+      "username": "MariaGraciax",
+      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg",
+      "product": {
+        "name": "Miel de Abeja Pura",
+        "description": "Zanahorias de calidad premium, cultivadas sin pesticidas. Ideales para ensaladas y guisos.",
+        "unit_price": 1.5,
+        "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+      }
+    },
+    {
+      "ordered_date": "2020-05-09",
+      "ordered_state": "Packaging",
+      "quantity": 30,
+      "username": "MariaGracia",
+      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg",
+      "product": {
+        "name": "Miel de Abeja Pura",
+        "description": "Zanahorias de calidad premium, cultivadas sin pesticidas. Ideales para ensaladas y guisos.",
+        "unit_price": 1.5,
+        "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+      }
+    },
+    {
+      "ordered_date": "2020-05-09",
+      "quantity": 30,
+      "username": "MariaGraciax",
+      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg",
+      "product": {
+        "name": "Miel de Abeja Pura",
+        "description": "Zanahorias de calidad premium, cultivadas sin pesticidas. Ideales para ensaladas y guisos.",
+        "unit_price": 1.5,
+        "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+      }
+    }
+  ],
   "products": [
     {
       "name": "Papas",
@@ -125,6 +175,36 @@
       "name": "Cerezos",
       "description": "Cereza recontra roja",
       "unit_price": 2.5,
+      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+    },
+    {
+      "name": "Arroz",
+      "description": "Arroz bien plantado",
+      "unit_price": 1.5,
+      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+    },
+    {
+      "name": "Arroz",
+      "description": "Arroz bien plantado",
+      "unit_price": 1.5,
+      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+    },
+    {
+      "name": "Arroz",
+      "description": "Arroz bien plantado",
+      "unit_price": 1.5,
+      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+    },
+    {
+      "name": "Arroz",
+      "description": "Arroz bien plantado",
+      "unit_price": 1.5,
+      "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
+    },
+    {
+      "name": "Arroz",
+      "description": "Arroz bien plantado",
+      "unit_price": 1.5,
       "image_url": "https://primefaces.org/cdn/primevue/images/product/bamboo-watch.jpg"
     },
     {
