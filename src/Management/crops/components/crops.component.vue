@@ -29,8 +29,9 @@
 </template>
 
 <script>
+// Import necessary components and services
 import CropCard from "@/Management/crops/components/crop-card.component.vue";
-import {CropsApiService} from "@/Management/crops/services/crops-api.service";
+import { CropsApiService } from "@/Management/crops/services/crops-api.service";
 
 export default {
   name: "CropsComponent",
@@ -38,14 +39,16 @@ export default {
     CropCard,
   },
   data() {
+    // Initialize component data
     return {
-      crops: [],
-      currentPage: 1,
-      pageSize: 6,
-      totalRecords: 0,
+      crops: [], // Array to store the retrieved crops
+      currentPage: 1, // Current page number for pagination
+      pageSize: 6, // Number of items to display per page
+      totalRecords: 0, // Total number of records (crops) available
     };
   },
   computed: {
+    // Computed property to get the subset of crops to be displayed on the current page
     displayedCrops() {
       const start = (this.currentPage - 1) * this.pageSize;
       const end = this.pageSize + start;
@@ -53,11 +56,13 @@ export default {
     },
   },
   methods: {
+    // Method triggered when the page changes in the pagination component
     onPageChange(event) {
       this.currentPage = event.page + 1;
     },
   },
   async mounted() {
+    // Fetch all crops when the component is mounted
     try {
       const cropsService = new CropsApiService();
       const response = await cropsService.getAll(); // Assuming this should be getAllCrops()
