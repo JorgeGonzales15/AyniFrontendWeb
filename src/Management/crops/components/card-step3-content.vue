@@ -45,19 +45,25 @@
 </template>
 
 <script>
-import {CropsApiService} from "@/Management/crops/services/crops-api.service";
+// Import necessary API service
+import { CropsApiService } from "@/Management/crops/services/crops-api.service";
 
 export default {
   props: {
-    formData: Object,
+    formData: Object, // Prop to receive form data from the parent component
   },
   methods: {
+    // Method to emit an event to move to the previous page
     prevPage() {
       this.$emit("prev-page", { pageIndex: 2 });
     },
 
+    // Method to complete the form submission
     complete() {
-      const salesApiService = new CropsApiService();
+      // Create an instance of the CropsApiService
+      const cropsApiService = new CropsApiService();
+      
+      // Extract relevant data from the form data
       const data = {
         undergrowth: this.formData.undergrowth,
         fertilize: this.formData.fertilize,
@@ -68,14 +74,15 @@ export default {
         pestcleaning: this.formData.pestcleaning,
       };
 
-      salesApiService
-          .create(data)
-          .then((response) => {
-            console.log(response.data);
-          })
-          .catch((error) => {
-            console.error("Error al crear el registro:", error);
-          });
+      // Call the API service to create a new record
+      cropsApiService
+        .create(data)
+        .then((response) => {
+          console.log(response.data); // Log successful response data
+        })
+        .catch((error) => {
+          console.error("Error creating record:", error); // Log error if the API call fails
+        });
     },
   },
 };
