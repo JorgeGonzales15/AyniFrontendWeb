@@ -33,41 +33,49 @@
 </template>
 
 <script>
-import {UserProfitsApiService} from "@/Finance/services/userProfits-api.service";
+// Import necessary classes
+import { UserProfitsApiService } from "@/Finance/services/userProfits-api.service";
 
 export default {
   name: "ProfitsPage",
   data() {
+    // Initialize component data
     return {
-      currentPage: 1,
-      pageSize: 6,
-      totalRecords: 0,
-      profits: [],
-      userProfitApi: new UserProfitsApiService()
+      currentPage: 1, // Current page number for pagination
+      pageSize: 6, // Number of items to display per page
+      totalRecords: 0, // Total number of records (profits) available
+      profits: [], // Array to store the retrieved profits
+      userProfitApi: new UserProfitsApiService() // Instance of the API service to manage user profits
     }
   },
   computed: {
+    // Computed property to get the subset of profits to be displayed on the current page
     displayedProfits() {
-      const start = (this.currentPage-1) * this.pageSize;
+      const start = (this.currentPage - 1) * this.pageSize;
       const end = this.pageSize + start;
       return this.profits.slice(start, end);
     },
+    // Computed property to get the current user from the state storage
     currentUser() {
       return this.$store.state.auth.user;
     }
   },
   methods: {
-    onReturn(){
+    // Navigate back to the select transaction page
+    onReturn() {
       this.$router.push("/select-transaction");
     },
+    // Method triggered when the page changes in the pagination component
     onPageChange(event) {
       this.currentPage = event.page + 1;
     },
-    onAddProfit(){
+    // Navigate to the add profit page
+    onAddProfit() {
       this.$router.push("/profits/add-profit");
     }
   },
   mounted() {
+    // Fetch all profits for the current user when the component is mounted
     this.userProfitApi.getAllProfits(this.currentUser.id).then((response) => {
       this.profits = response.data;
       this.totalRecords = this.profits.length;
