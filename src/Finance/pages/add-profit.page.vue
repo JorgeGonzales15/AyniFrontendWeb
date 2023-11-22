@@ -48,43 +48,49 @@
 </template>
 
 <script>
-import {ProfitsApiService} from "@/Finance/services/profits-api.service";
-import {Profit} from "@/Finance/models/profit.entity";
+// Import necessary classes
+import { ProfitsApiService } from "@/Finance/services/profits-api.service";
+import { Profit } from "@/Finance/models/profit.entity";
 
-export default{
+export default {
   name: "AddProfitPage",
   data() {
+    // Initialize component data
     return {
-      newProfit: {},
-      profitsApi: new ProfitsApiService(),
-      showMessage: false,
-      messageType: '',
+      newProfit: {}, // New profit object to be filled with form data
+      profitsApi: new ProfitsApiService(), // Instance of the API service to manage profits
+      showMessage: false, // Flag to show or hide messages
+      messageType: '', // Type of message to be displayed to the user (e.g., success, incomplete)
     }
   },
   computed: {
+    // Computed property to get the current user from the state storage
     currentUser() {
       return this.$store.state.auth.user;
     }
   },
   methods: {
-    onReturn(){
+    // Navigate back to the profits page
+    onReturn() {
       this.$router.push("/profits");
     },
+    // Check if the form is incomplete
     isFormIncomplete() {
       return !this.newProfit.name ||
-          !this.newProfit.amount ||
-          !this.newProfit.description
+        !this.newProfit.amount ||
+        !this.newProfit.description;
     },
+    // Method to add a new profit
     async addProfit() {
+      // Check if the form is incomplete
       if (this.isFormIncomplete()) {
-        this.messageType = 'incomplete';
-        this.showMessage = true;
+        this.messageType = 'incomplete'; // Set message type to incomplete
+        this.showMessage = true; // Show the incomplete message
         return;
       }
 
-      // Manage the data
+      // Manage form data and create a new instance of Profit
       const profitData = new Profit();
-
       profitData.nameP = this.newProfit.name;
       profitData.amountP = parseInt(this.newProfit.amount);
       profitData.descriptionP = this.newProfit.description;
@@ -92,20 +98,19 @@ export default{
 
       console.log(profitData);
 
+      // Call the API service to create a new profit
       this.profitsApi.createProfit(JSON.stringify(profitData)).then((response) => {
         console.log(response.data);
-        this.messageType = 'success';
-        this.showMessage = true;
+        this.messageType = 'success'; // Set message type to success
+        this.showMessage = true; // Show the success message
       }).catch((error) => {
-        this.showMessage = false;
-        console.error("Error al crear el registro:", error);
-        this.messageType = error.response.data;
+        this.showMessage = false; // Hide any previous messages
+        console.error("Error creating record:", error);
+        this.messageType = error.response.data; // Set message type to the error response data
       });
-
     }
   }
 }
-
 </script>
 
 <style>
