@@ -52,47 +52,53 @@
 </template>
 
 <script>
+// Import necessary API services
 import { CropsApiService } from "@/Management/crops/services/crops-api.service";
 import { ProductsApiService } from "@/Shopping/products/services/products-api.service";
-
-
 
 export default {
   name: 'CropDetailsComponent',
   data() {
+    // Initialize component data
     return {
-      crop: null,
-      visible: false,
-      productSold: false,
-      name:'',
-      description:'',
-      unitPrice: null,
-      quantity: null,
-      imageUrl:'',
-      productNameExists: false,
+      crop: null, // Object to store crop details
+      visible: false, // Flag to control the visibility of the sell dialog
+      productSold: false, // Flag to indicate if the product has been successfully sold
+      name: '', // Name of the product to be sold
+      description: '', // Description of the product to be sold
+      unitPrice: null, // Unit price of the product to be sold
+      quantity: null, // Quantity of the product to be sold
+      imageUrl: '', // URL of the image associated with the product to be sold
+      productNameExists: false, // Flag to indicate if a product with the same name already exists and is not sold
     };
   },
   async created() {
+    // Fetch crop details when the component is created
     try {
       const cropsService = new CropsApiService();
       const response = await cropsService.getAll();
       const cropId = Number(this.$route.params.id);
 
+      // Find the crop with the specified ID
       this.crop = response.data.find((c) => c.id === cropId);
-      this.name= this.crop.name;
-      this.description= this.crop.description;
-      this.unitPrice= this.crop.unitPrice;
-      this.quantity= this.crop.quantity;
-      this.imageUrl= this.crop.imageUrl;
+
+      // Initialize form fields with crop details
+      this.name = this.crop.name;
+      this.description = this.crop.description;
+      this.unitPrice = this.crop.unitPrice;
+      this.quantity = this.crop.quantity;
+      this.imageUrl = this.crop.imageUrl;
 
     } catch (error) {
       console.error('Error fetching crop details:', error);
     }
   },
   methods: {
+    // Method to open the sell dialog
     openSellDialog() {
       this.visible = true;
     },
+    // Method to reset the form fields and hide the sell dialog
     resetForm() {
       this.visible = false;
       this.name = "";
@@ -101,9 +107,10 @@ export default {
       this.quantity = null;
       this.imageUrl = "";
     },
+    // Method to sell the crop and create a new product
     async sellCrop() {
       try {
-
+        // Create product data from the form fields
         const productData = {
           id: 0,
           name: this.name,
@@ -111,18 +118,25 @@ export default {
           unitPrice: this.unitPrice,
           quantity: this.quantity,
           imageUrl: this.imageUrl,
-
         };
 
+        // Create an instance of the ProductsApiService
         const productsService = new ProductsApiService();
+
+        // Fetch all existing products
         const allProducts = await productsService.getAllProducts();
 
+        // Check if a product with the same name already exists and is not sold
         const existingProduct = allProducts.data.find(product => product.name === this.name && !product.sold);
         if (existingProduct) {
           this.productNameExists = true;
           return;
         }
+
+        // Create a new product
         await productsService.createProduct(productData);
+
+        // Set flags and reset form on successful product creation
         this.productSold = true;
         this.resetForm();
         this.productNameExists = false;
