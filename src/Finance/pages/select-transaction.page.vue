@@ -28,35 +28,41 @@
 </template>
 
 <script>
-
-import {UserProfitsApiService} from "@/Finance/services/userProfits-api.service";
-import {UserCostsApiService} from "@/Finance/services/userCosts-api.service";
+// Import necessary classes
+import { UserProfitsApiService } from "@/Finance/services/userProfits-api.service";
+import { UserCostsApiService } from "@/Finance/services/userCosts-api.service";
 
 export default {
   name: "select-transaction",
   data() {
+    // Initialize component data
     return {
-      profits: [],
-      costs: [],
-      userProfitsApi: new UserProfitsApiService(),
-      userCostsApi: new UserCostsApiService()
+      profits: [], // Array to store the retrieved profits
+      costs: [], // Array to store the retrieved costs
+      userProfitsApi: new UserProfitsApiService(), // Instance of the API service to manage user profits
+      userCostsApi: new UserCostsApiService() // Instance of the API service to manage user costs
     }
   },
   computed: {
+    // Computed property to get the current user from the state storage
     currentUser() {
       return this.$store.state.auth.user;
     }
   },
   methods: {
-    onCostsSelected(){
+    // Navigate to the costs page
+    onCostsSelected() {
       this.$router.push("/costs");
     },
-    onProfitsSelected(){
+    // Navigate to the profits page
+    onProfitsSelected() {
       this.$router.push("/profits");
     }
   },
   mounted() {
+    // Fetch a subset of profits for the current user when the component is mounted
     this.userProfitsApi.getAllProfits(this.currentUser.id).then((response) => this.profits = response.data.slice(0, 5));
+    // Fetch a subset of costs for the current user when the component is mounted
     this.userCostsApi.getAllCosts(this.currentUser.id).then((response) => this.costs = response.data.slice(0, 5));
   }
 }
