@@ -47,64 +47,70 @@
 </template>
 
 <script>
-import {Cost} from "@/Finance/models/cost.entity";
-import {CostsApiService} from "@/Finance/services/costs-api.service";
+// Import necessary classes
+import { Cost } from "@/Finance/models/cost.entity";
+import { CostsApiService } from "@/Finance/services/costs-api.service";
 
-export default{
+export default {
   name: "AddCostPage",
   data() {
+    // Initialize component data
     return {
-      newCost: {},
-      costsApi: new CostsApiService(),
-      showMessage: false,
-      message: '',
+      newCost: {}, // New cost object to be filled with form data
+      costsApi: new CostsApiService(), // Instance of the API service to manage costs
+      showMessage: false, // Flag to show or hide messages
+      message: '', // Message to be displayed to the user
     }
   },
   computed: {
+    // Computed property to get the current user from the state storage
     currentUser() {
       return this.$store.state.auth.user;
     }
   },
   methods: {
-    onReturn(){
+    // Navigate back to the costs page
+    onReturn() {
       this.$router.push("/costs");
     },
+    // Check if the form is incomplete
     isFormIncomplete() {
       return !this.newCost.name ||
-          !this.newCost.amount ||
-          !this.newCost.description
+        !this.newCost.amount ||
+        !this.newCost.description;
     },
+    // Method to add a new cost
     async addProfit() {
+      // Check if the form is incomplete
       if (this.isFormIncomplete()) {
-        this.message = 'All camps are required';
-        this.showMessage = true;
+        this.message = 'All fields are required'; // Error message if the form is incomplete
+        this.showMessage = true; // Show the error message
         return;
       }
 
-      // Manage the data
-      const profitData = new Cost();
+      // Manage form data and create a new instance of Cost
+      const costData = new Cost();
+      costData.name = this.newCost.name;
+      costData.amount = parseInt(this.newCost.amount);
+      costData.description = this.newCost.description;
+      costData.userId = this.currentUser.id;
 
-      profitData.name = this.newCost.name;
-      profitData.amount = parseInt(this.newCost.amount);
-      profitData.description = this.newCost.description;
-      profitData.userId = this.currentUser.id;
+      console.log(costData);
 
-      console.log(profitData);
-
-      this.costsApi.createCost(JSON.stringify(profitData)).then((response) => {
+      // Call the API service to create a new cost
+      this.costsApi.createCost(JSON.stringify(costData)).then((response) => {
         console.log(response.data);
-        this.message = 'Cost Successfully Added';
-        this.showMessage = true;
+        this.message = 'Cost Successfully Added'; // Success message when adding the cost
+        this.showMessage = true; // Show the success message
       }).catch((error) => {
-        this.showMessage = true;
+        // Handle errors when adding the cost
+        this.showMessage = true; // Show the error message
         this.message = error.response.data;
-        console.error("Error al crear el registro:", error.response.data);
+        console.error("Error creating record:", error.response.data);
       });
-
     }
   }
 }
-
 </script>
 
 <style>
