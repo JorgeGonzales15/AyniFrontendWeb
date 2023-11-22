@@ -21,8 +21,9 @@
 export default {
   name: "stepper-content",
   data() {
+    // Initialize component data
     return {
-      userId: null,
+      userId: null, // User ID (not initialized in this code)
       steps: [
         {
           label: "Paso 1",
@@ -37,23 +38,30 @@ export default {
           to: "step-3",
         },
       ],
-      formObject: {},
-      errors: [],
+      formObject: {}, // Object to store form data
+      errors: [], // Array to store form validation errors
     };
   },
   methods: {
+    // Method to move to the next page in the stepper
     nextPage(event) {
+      // Copy form data to formObject
       for (let field in event.formData) {
         this.formObject[field] = event.formData[field];
       }
+      // Store formObject in localStorage for persistence
       localStorage.setItem("formObject", JSON.stringify(this.formObject));
+      // Navigate to the next step in the stepper
       this.$router.push(this.steps[event.pageIndex + 1].to);
     },
+    // Method to move to the previous page in the stepper
     prevPage(event) {
+      // Navigate to the previous step in the stepper
       this.$router.push(this.steps[event.pageIndex - 1].to);
     },
+    // Method to handle completion of the stepper
     async complete(event) {
-      // Registered the last payment
+      // Copy form data to formObject
       for (let field in event.formData) {
         this.formObject[field] = event.formData[field];
       }
